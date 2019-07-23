@@ -1,2 +1,2 @@
-# simple
-Library for simple VHDL entities
+# vhdl\_simple
+Library for simple VHDL entities.

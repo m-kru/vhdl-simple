@@ -12,7 +12,7 @@
 --  loosens the constraints for Place & Route algorithms.
 --
 --------------------------------------------------------------------------------
--- Copyright (c) 2019 Michał Kruszewski
+-- Copyright (c) 2019 Michal Kruszewski
 --------------------------------------------------------------------------------
 -- MIT License
 --------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ use ieee.std_logic_1164.all;
 
 entity sync_reg_false_path is
   generic (
-    G_WIDTH      : positive;
+    G_WIDTH      : natural := 0;
     G_INIT_VALUE : std_logic := '0'
   );
   port (

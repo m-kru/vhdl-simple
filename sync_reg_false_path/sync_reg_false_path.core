@@ -10,9 +10,8 @@ filesets:
 
     constr:
         files:
-            - constr/sync_reg_false_path.xdc
-            - constr/sync_reg_false_path.tcl
-        file_type: tclSource
+            - constr/sync_reg_false_path.xdc : {file_type : xdc}
+            - constr/sync_reg_false_path.tcl : {file_type : tclSource}
 
 targets:
     default:

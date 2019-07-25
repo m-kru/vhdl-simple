@@ -28,7 +28,7 @@ use ieee.std_logic_1164.all;
 
 entity mux_2x1 is
   generic (
-    G_WIDTH : natural := 0
+    G_WIDTH : positive := 1
   );
   port (
     addr_i : in  std_logic;

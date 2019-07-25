@@ -7,6 +7,7 @@ filesets:
         files:
             - rtl/mux_2x1.vhd
         file_type: vhdlSource-93
+        logical_name: vhdl_simple
 
 targets:
     default:

@@ -9,13 +9,14 @@ filesets:
         file_type: vhdlSource-93
         logical_name: vhdl_simple
 
-    constr:
+    vivado_constr:
         files:
             - constr/sync_reg_false_path.xdc : {file_type : xdc}
+
+    tcl:
+        files:
             - constr/sync_reg_false_path.tcl : {file_type : tclSource}
 
 targets:
     default:
-        filesets:
-            - rtl
-            - constr
+        filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]

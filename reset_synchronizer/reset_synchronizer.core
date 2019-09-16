@@ -1,0 +1,22 @@
+CAPI=2:
+
+name: :vhdl_simple:reset_synchronizer
+
+filesets:
+    rtl:
+        files:
+            - rtl/reset_synchronizer.vhd
+        file_type: vhdlSource-93
+        logical_name: vhdl_simple
+
+    vivado_constr:
+        files:
+            - constr/reset_synchronizer.xdc : {file_type : xdc}
+
+    tcl:
+        files:
+            - constr/reset_synchronizer.tcl : {file_type : tclSource}
+
+targets:
+    default:
+        filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]

@@ -1,0 +1,15 @@
+CAPI=2:
+
+name: :vhdl_simple:accumulative_bit_array
+
+filesets:
+    rtl:
+        files:
+            - rtl/accumulative_bit_array.vhd
+        file_type: vhdlSource-93
+        logical_name: vhdl_simple
+
+targets:
+    default:
+        filesets:
+            - rtl

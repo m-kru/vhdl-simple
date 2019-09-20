@@ -1,0 +1,62 @@
+CAPI=2:
+
+name: :vhdl_simple:saturated_signed_adder
+
+filesets:
+    rtl:
+        files:
+            - rtl/saturated_signed_adder.vhd
+        file_type: vhdlSource-2008
+
+    tb_default_generics:
+        files:
+            - tb/tb_default_generics.vhd
+        file_type: vhdlSource-93
+
+    tb_comb:
+        files:
+            - tb/tb_comb.vhd
+        file_type: vhdlSource-93
+
+    tb_both_limits_positive:
+        files:
+            - tb/tb_both_limits_positive.vhd
+        file_type: vhdlSource-93
+
+    tb_both_limits_negative:
+        files:
+            - tb/tb_both_limits_negative.vhd
+        file_type: vhdlSource-93
+
+targets:
+    default:
+        filesets:
+            - rtl
+
+    tb_default_generics:
+        default_tool: ghdl
+        toplevel: tb_default_generics
+        filesets:
+            - rtl
+            - tb_default_generics
+
+    tb_comb:
+        default_tool: ghdl
+        toplevel: tb_comb
+        filesets:
+            - rtl
+            - tb_comb
+
+    tb_both_limits_positive:
+        default_tool: ghdl
+        toplevel: tb_both_limits_positive
+        filesets:
+            - rtl
+            - tb_both_limits_positive
+
+    tb_both_limits_negative:
+        default_tool: ghdl
+        toplevel: tb_both_limits_negative
+        filesets:
+            - rtl
+            - tb_both_limits_negative

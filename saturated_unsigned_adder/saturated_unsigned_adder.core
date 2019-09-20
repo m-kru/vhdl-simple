@@ -1,0 +1,50 @@
+CAPI=2:
+
+name: :vhdl_simple:saturated_unsigned_adder
+
+filesets:
+    rtl:
+        files:
+            - rtl/saturated_unsigned_adder.vhd
+        file_type: vhdlSource-2008
+
+    tb_default_generics:
+        files:
+            - tb/tb_default_generics.vhd
+        file_type: vhdlSource-93
+
+    tb_comb:
+        files:
+            - tb/tb_comb.vhd
+        file_type: vhdlSource-93
+
+    tb_different_widths:
+        files:
+            - tb/tb_different_widths.vhd
+        file_type: vhdlSource-93
+
+targets:
+    default:
+        filesets:
+            - rtl
+
+    tb_default_generics:
+        default_tool: ghdl
+        toplevel: tb_default_generics
+        filesets:
+            - rtl
+            - tb_default_generics
+
+    tb_comb:
+        default_tool: ghdl
+        toplevel: tb_comb
+        filesets:
+            - rtl
+            - tb_comb
+
+    tb_different_widths:
+        default_tool: ghdl
+        toplevel: tb_different_widths
+        filesets:
+            - rtl
+            - tb_different_widths

@@ -24,26 +24,26 @@
 --------------------------------------------------------------------------------
 
 library ieee;
-use ieee.std_logic_1164.all;
+  use ieee.std_logic_1164.all;
 
 entity mux_2x1 is
   generic (
     G_WIDTH : positive := 1
   );
   port (
-    addr_i : in  std_logic;
-    in_0_i : in  std_logic_vector(G_WIDTH-1 downto 0);
-    in_1_i : in  std_logic_vector(G_WIDTH-1 downto 0);
-    out_o  : out std_logic_vector(G_WIDTH-1 downto 0)
+    addr_i : in    std_logic;
+    in_0_i : in    std_logic_vector(G_WIDTH - 1 downto 0);
+    in_1_i : in    std_logic_vector(G_WIDTH - 1 downto 0);
+    out_o  : out   std_logic_vector(G_WIDTH - 1 downto 0)
   );
-end mux_2x1;
+end entity mux_2x1;
 
 architecture rtl of mux_2x1 is
 
 begin
 
   with addr_i select
-    out_o <= in_1_i when '1',
-             in_0_i when others;
+  out_o <= in_1_i when '1',
+           in_0_i when others;
 
-end rtl;
+end architecture rtl;

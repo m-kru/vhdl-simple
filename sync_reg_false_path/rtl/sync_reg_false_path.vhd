@@ -38,7 +38,7 @@ entity sync_reg_false_path is
     d_i   : in  std_logic_vector(G_WIDTH-1 downto 0);
     q_o   : out std_logic_vector(G_WIDTH-1 downto 0)
   );
-end sync_reg_false_path;
+end entity sync_reg_false_path;
 
 -- Disable Quartus warning about unrecognized attributes.
 -- altera message_off 10335
@@ -63,14 +63,14 @@ architecture rtl of sync_reg_false_path is
 
 begin
 
-  process(clk_i)
+  sync: process(clk_i) is
   begin
     if rising_edge(clk_i) then
       s_0 <= d_i;
       s_1 <= s_0;
     end if;
-  end process;
+  end process sync;
 
   q_o <= s_1;
 
-end rtl;
+end architecture rtl;

@@ -53,8 +53,10 @@ architecture rtl of reset_synchronizer is
 
 begin  -- architecture beh
 
+  -- vsg_off concurrent_007
   rst_in_p <= rst_i when G_INPUT_POSITIVE else not(rst_i);
   rst_o <= rst_ff2 when G_OUTPUT_POSITIVE else not(rst_ff2);
+  -- vsg_on
 
   sync: process(clk_i, rst_in_p) is
   begin
@@ -67,6 +69,6 @@ begin  -- architecture beh
       rst_ff1 <= '0';
       rst_ff2 <= rst_ff1;
     end if;
-  end process;
+  end process sync;
 
 end architecture rtl;

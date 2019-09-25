@@ -43,3 +43,6 @@ rule:
     # Allow lowercase for loop label
     for_loop_003:
         disable: true
+    # Generics must start with G_
+    generic_020:
+        disable: false

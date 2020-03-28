@@ -1,0 +1,15 @@
+CAPI=2:
+
+name: :vhdl_simple:mux_8x1
+
+filesets:
+    rtl:
+        files:
+            - rtl/mux_8x1.vhd
+        file_type: vhdlSource-93
+        logical_name: vhdl_simple
+
+targets:
+    default:
+        filesets:
+            - rtl

@@ -1,0 +1,39 @@
+CAPI=2:
+
+name: :vhdl_simple:sipo_register
+
+filesets:
+  rtl:
+    files:
+      - rtl/sipo_register.vhd
+    file_type: vhdlSource-2008
+
+  tb_default_generics:
+    files:
+      - tb/tb_default_generics.vhd
+    file_type: vhdlSource-2008
+
+  tb_no_output_registers:
+    files:
+      - tb/tb_no_output_registers.vhd
+    file_type: vhdlSource-2008
+
+targets:
+  default:
+    filesets:
+      - rtl
+
+  tb_default_generics:
+    default_tool: ghdl
+    toplevel: tb_default_generics
+    filesets:
+      - rtl
+      - tb_default_generics
+
+  tb_no_output_registers:
+    default_tool: ghdl
+    toplevel: tb_no_output_registers
+    filesets:
+      - rtl
+      - tb_no_output_registers
+

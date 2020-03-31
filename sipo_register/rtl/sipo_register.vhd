@@ -36,7 +36,7 @@ entity sipo_register is
   );
   port (
     clk_i    : in   std_logic;
-    rst_i    : in   std_logic;
+    rst_i    : in   std_logic := '0';
     d_i      : in   std_logic;
     d_o      : out  std_logic;
     q_o      : out  std_logic_vector(G_WIDTH - 1 downto 0); -- Parallel output

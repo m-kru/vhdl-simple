@@ -7,16 +7,19 @@ filesets:
     files:
       - rtl/sipo_register.vhd
     file_type: vhdlSource-2008
+    logical_name: vhdl_simple
 
   tb_default_generics:
     files:
       - tb/tb_default_generics.vhd
     file_type: vhdlSource-2008
+    logical_name: vhdl_simple
 
   tb_no_output_registers:
     files:
       - tb/tb_no_output_registers.vhd
     file_type: vhdlSource-2008
+    logical_name: vhdl_simple
 
 targets:
   default:

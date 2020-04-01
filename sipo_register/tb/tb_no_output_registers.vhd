@@ -2,6 +2,8 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
+library vhdl_simple;
+
 entity tb_no_output_registers is
 end entity;
 
@@ -20,7 +22,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  sipo_register_0 : entity work.sipo_register
+  sipo_register_0 : entity vhdl_simple.sipo_register
   generic map (
     G_WIDTH            => 4,
     G_REGISTER_OUTPUTS => false

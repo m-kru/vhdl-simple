@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:sipo_register
+name: :vhdl_simple:piso_register
 
 filesets:
   rtl:
     files:
-      - rtl/sipo_register.vhd
+      - rtl/piso_register.vhd
     file_type: vhdlSource-2008
     logical_name: vhdl_simple
 
@@ -14,9 +14,9 @@ filesets:
       - tb/tb_default_generics.vhd
     file_type: vhdlSource-2008
 
-  tb_no_output_registers:
+  tb_msb_first:
     files:
-      - tb/tb_no_output_registers.vhd
+      - tb/tb_msb_first.vhd
     file_type: vhdlSource-2008
 
 targets:
@@ -31,10 +31,9 @@ targets:
       - rtl
       - tb_default_generics
 
-  tb_no_output_registers:
+  tb_msb_first:
     default_tool: ghdl
-    toplevel: tb_no_output_registers
+    toplevel: tb_msb_first
     filesets:
       - rtl
-      - tb_no_output_registers
-
+      - tb_msb_first

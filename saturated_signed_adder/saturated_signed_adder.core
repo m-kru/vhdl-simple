@@ -7,26 +7,27 @@ filesets:
         files:
             - rtl/saturated_signed_adder.vhd
         file_type: vhdlSource-2008
+        logical_name: vhdl_simple
 
     tb_default_generics:
         files:
             - tb/tb_default_generics.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
     tb_comb:
         files:
             - tb/tb_comb.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
     tb_both_limits_positive:
         files:
             - tb/tb_both_limits_positive.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
     tb_both_limits_negative:
         files:
             - tb/tb_both_limits_negative.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
 targets:
     default:

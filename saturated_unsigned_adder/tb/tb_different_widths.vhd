@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library vhdl_simple;
+
 entity tb_different_widths is
 end entity tb_different_widths;
 
@@ -21,7 +23,7 @@ begin
   
   s_clk <= not s_clk after C_CLK_PERIOD/2;
 
-  saturated_unsigned_adder_0 : entity work.saturated_unsigned_adder
+  saturated_unsigned_adder_0 : entity vhdl_simple.saturated_unsigned_adder
   generic map (
     G_A_WIDTH => 9,
     G_B_WIDTH => 5,

@@ -7,6 +7,7 @@ filesets:
         files:
             - rtl/saturated_unsigned_adder.vhd
         file_type: vhdlSource-2008
+        logical_name: vhdl_simple
 
     tb_default_generics:
         files:

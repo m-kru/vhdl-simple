@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library vhdl_simple;
+
 entity tb_comb is
 end entity tb_comb;
 
@@ -21,7 +23,7 @@ architecture tb of tb_comb is
 
 begin
   
-  saturated_unsigned_adder_0 : entity work.saturated_unsigned_adder
+  saturated_unsigned_adder_0 : entity vhdl_simple.saturated_unsigned_adder
   generic map (
     G_MAX_VALUE => C_MAX_VALUE,
     G_MIN_VALUE => C_MIN_VALUE,

@@ -1,0 +1,27 @@
+CAPI=2:
+
+name: :vhdl_simple:delay_register
+
+filesets:
+  rtl:
+    files:
+      - src/delay_register.vhd
+    file_type: vhdlSource-93
+    logical_name: vhdl_simple
+
+  tb_:
+    files:
+      - tb/tb.vhd
+    file_type: vhdlSource-2008
+
+targets:
+  default:
+    filesets:
+      - rtl
+
+  tb_:
+    default_tool: ghdl
+    toplevel: tb
+    filesets:
+      - rtl
+      - tb_

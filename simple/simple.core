@@ -1,0 +1,15 @@
+CAPI=2:
+
+name: :vhdl_simple:simple
+
+filesets:
+  rtl:
+    files:
+      - simple.vhd
+    file_type: vhdlSource-2008
+    logical_name: vhdl_simple
+
+targets:
+  default:
+    filesets:
+      - rtl

@@ -125,24 +125,24 @@ begin
   end process sum;
 
   register_outputs : if G_REGISTER_OUTPUTS generate
-  
+
     sync_outputs : process (clk_i) is
     begin
-  
+
       if rising_edge(clk_i) then
         result_o    <= s_result;
         overflow_o  <= s_overflow;
         underflow_o <= s_underflow;
       end if;
-  
+
     end process sync_outputs;
-  
+
   else generate
-  
+
     result_o    <= s_result;
     overflow_o  <= s_overflow;
     underflow_o <= s_underflow;
-  
+
   end generate register_outputs;
 
 end architecture rtl;

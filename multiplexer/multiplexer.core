@@ -1,0 +1,29 @@
+CAPI=2:
+
+name: :vhdl_simple:multiplexer
+
+filesets:
+  rtl:
+    depend:
+      - :vhdl_simple:simple
+    files:
+      - src/multiplexer.vhd
+    file_type: vhdlSource-2008
+    logical_name: vhdl_simple
+
+  tb_:
+    files:
+      - tb/tb.vhd
+    file_type: vhdlSource-2008
+
+targets:
+  default:
+    filesets:
+      - rtl
+
+  tb_:
+    default_tool: ghdl
+    toplevel: tb
+    filesets:
+      - rtl
+      - tb_

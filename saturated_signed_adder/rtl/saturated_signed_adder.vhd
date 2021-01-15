@@ -40,7 +40,7 @@ entity saturated_signed_adder is
     G_REGISTER_OUTPUTS : boolean  := true
   );
   port (
-    clk_i       : in    std_logic := '0';
+    clk_i       : in    std_logic := '-';
     a_i         : in    signed(G_A_WIDTH - 1 downto 0);
     b_i         : in    signed(G_B_WIDTH - 1 downto 0);
     result_o    : out   signed(G_RESULT_WIDTH - 1 downto 0);
@@ -48,7 +48,11 @@ entity saturated_signed_adder is
     underflow_o : out   std_logic
   );
 
-begin 
+begin
+  assert G_REGISTER_OUTPUTS = false or clk_i /= '-'
+    report "clk_i port not mapped to any signal"
+    severity failure;
+
   assert (G_MAX_VALUE > G_MIN_VALUE) or (G_MAX_VALUE = 0 and G_MIN_VALUE = 0)
     report "G_MAX_VALUE (" & integer'image(G_MAX_VALUE) & ") must be greater than G_MIN_VALUE (" & integer'image(G_MIN_VALUE) & ")"
     severity failure;
@@ -123,6 +127,7 @@ begin
     end if;
 
   end process sum;
+
 
   register_outputs : if G_REGISTER_OUTPUTS generate
 

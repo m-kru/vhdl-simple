@@ -72,13 +72,14 @@ begin
     end if;
   end process shift;
 
+
   register_outputs : if G_REGISTER_OUTPUTS generate
-  
+
     q_o <= q_output;
 
     process (clk_i) is
     begin
-  
+
       if rising_edge(clk_i) then
         if rst_i = '1' then
           q_output <= (others => G_RESET_VALUE);
@@ -88,7 +89,7 @@ begin
       end if;
 
     end process;
-  
+
   else generate
 
     q_o <= q_internal;

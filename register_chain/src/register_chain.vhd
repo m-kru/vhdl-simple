@@ -5,12 +5,15 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- delay_register simply delays the data in clock cycles.
+-- register_chain is a simple chain of registers.
 --
--- Setting G_DELAY to 0 is not possible.
-entity delay_register is
+-- It can be used for multiple purposes such as registering
+-- combinatorial signals (G_STAGES = 1) or adjusting delays.
+--
+-- Setting G_STAGES to 0 is not possible.
+entity register_chain is
    generic (
-      G_DELAY       : positive  := 1;
+      G_STAGES      : positive  := 1;
       G_WIDTH       : positive  := 32;
       G_INIT_VALUE  : std_logic := 'U';
       G_RESET_VALUE : std_logic := '0'
@@ -24,11 +27,11 @@ entity delay_register is
    );
 end entity;
 
-architecture rtl of delay_register is
+architecture rtl of register_chain is
 
-   type t_delay_chain is array (0 to G_DELAY - 1) of std_logic_vector(G_WIDTH - 1 downto 0);
+   type t_chain is array (0 to G_STAGES - 1) of std_logic_vector(G_WIDTH - 1 downto 0);
 
-   signal delay_chain : t_delay_chain := (others => (others => G_INIT_VALUE));
+   signal chain : t_chain := (others => (others => G_INIT_VALUE));
 
 begin
 
@@ -36,23 +39,23 @@ begin
    begin
       if rising_edge(clk_i) then
          if enable_i = '1' then
-            for i in 0 to G_DELAY - 1 loop
+            for i in 0 to G_STAGES - 1 loop
                if i = 0 then
-                  delay_chain(0) <= d_i;
+                  chain(0) <= d_i;
                else
-                  delay_chain(i) <= delay_chain(i - 1);
+                  chain(i) <= chain(i - 1);
                end if;
             end loop;
 
             if rst_i = '1' then
-               for i in 0 to G_DELAY - 1 loop
-                  delay_chain(i) <= (others => G_RESET_VALUE);
+               for i in 0 to G_STAGES - 1 loop
+                  chain(i) <= (others => G_RESET_VALUE);
                end loop;
             end if;
          end if;
       end if;
    end process;
 
-   q_o <= delay_chain(G_DELAY - 1);
+   q_o <= chain(G_STAGES - 1);
 
 end architecture;

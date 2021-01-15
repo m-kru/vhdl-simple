@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:delay_register
+name: :vhdl_simple:register_chain
 
 filesets:
   rtl:
     files:
-      - src/delay_register.vhd
+      - src/register_chain.vhd
     file_type: vhdlSource-93
     logical_name: vhdl_simple
 

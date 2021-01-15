@@ -25,10 +25,10 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity vhdl_simple.delay_register
+   DUT : entity vhdl_simple.register_chain
    generic map (
-      G_WIDTH => C_WIDTH,
-      G_DELAY => C_DELAY
+      G_WIDTH  => C_WIDTH,
+      G_STAGES => C_DELAY
    )
    port map (
       clk_i => clk,

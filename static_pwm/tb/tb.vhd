@@ -1,7 +1,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb is
 end entity;
@@ -24,7 +24,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity vhdl_simple.static_pwm
+   DUT : entity simple.static_pwm
    generic map (
       G_PERIOD => C_PERIOD,
       G_DUTY   => C_DUTY

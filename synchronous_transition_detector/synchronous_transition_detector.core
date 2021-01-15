@@ -7,7 +7,7 @@ filesets:
     files:
       - src/synchronous_transition_detector.vhd
     file_type: vhdlSource-93
-    logical_name: vhdl_simple
+    logical_name: simple
 
   tb_:
     files:

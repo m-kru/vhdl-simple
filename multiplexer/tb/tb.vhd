@@ -1,7 +1,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb is
 end entity;
@@ -26,7 +26,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity vhdl_simple.multiplexer
+   DUT : entity simple.multiplexer
    generic map (
       G_INPUTS => 3,
       G_WIDTH  => C_WIDTH,

@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb_default_generics is
 end entity tb_default_generics;
@@ -23,7 +23,7 @@ begin
   
   s_clk <= not s_clk after C_CLK_PERIOD/2;
 
-  saturated_unsigned_adder_0 : entity vhdl_simple.saturated_unsigned_adder
+  saturated_unsigned_adder_0 : entity simple.saturated_unsigned_adder
   port map (
     clk_i  => s_clk,
     a_i    => s_a,

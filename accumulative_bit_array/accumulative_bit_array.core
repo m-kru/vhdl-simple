@@ -7,7 +7,7 @@ filesets:
         files:
             - rtl/accumulative_bit_array.vhd
         file_type: vhdlSource-93
-        logical_name: vhdl_simple
+        logical_name: simple
 
 targets:
     default:

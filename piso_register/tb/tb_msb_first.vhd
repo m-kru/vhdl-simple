@@ -2,7 +2,7 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb_msb_first is
 end entity;
@@ -23,7 +23,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  piso_register : entity vhdl_simple.piso_register
+  piso_register : entity simple.piso_register
   generic map (
     G_WIDTH        => 4,
     G_OUTPUT_WIDTH => 2,

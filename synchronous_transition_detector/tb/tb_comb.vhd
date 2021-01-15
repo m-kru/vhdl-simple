@@ -1,7 +1,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb_comb is
 end entity;
@@ -23,7 +23,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity vhdl_simple.synchronous_transition_detector
+   DUT : entity simple.synchronous_transition_detector
    generic map (
       G_WIDTH => C_WIDTH,
       G_REGISTER_OUTPUTS => false

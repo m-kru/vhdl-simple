@@ -8,8 +8,8 @@ library ieee;
    use ieee.math_real.ceil;
    use ieee.math_real.log2;
 
-library vhdl_simple;
-   use vhdl_simple.simple;
+library simple;
+   use simple.simple.t_slv_vector;
 
 -- multiplexer is a generic multiplexer.
 --
@@ -33,7 +33,7 @@ entity multiplexer is
    port (
       clk_i    : in  std_logic := '-';
       addr_i   : in  std_logic_vector(integer(ceil(log2(real(G_INPUTS)))) - 1 downto 0);
-      inputs_i : in  simple.t_slv_vector(G_INPUTS - 1 downto 0)(G_WIDTH - 1 downto 0);
+      inputs_i : in  t_slv_vector(G_INPUTS - 1 downto 0)(G_WIDTH - 1 downto 0);
       output_o : out std_logic_vector(G_WIDTH - 1 downto 0)
    );
 begin

@@ -9,7 +9,7 @@ filesets:
     files:
       - src/multiplexer.vhd
     file_type: vhdlSource-2008
-    logical_name: vhdl_simple
+    logical_name: simple
 
   tb_:
     files:

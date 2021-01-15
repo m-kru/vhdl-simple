@@ -2,7 +2,7 @@ library ieee;
    use ieee.std_logic_1164.all;
    use ieee.numeric_std.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb is
 end entity;
@@ -25,7 +25,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity vhdl_simple.register_chain
+   DUT : entity simple.register_chain
    generic map (
       G_WIDTH  => C_WIDTH,
       G_STAGES => C_DELAY

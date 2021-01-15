@@ -2,7 +2,7 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb_default_generics is
 end entity;
@@ -23,7 +23,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  sipo_register_0 : entity vhdl_simple.sipo_register
+  sipo_register_0 : entity simple.sipo_register
   port map (
     clk_i    => clk,
     rst_i    => reset,

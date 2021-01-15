@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library vhdl_simple;
+library simple;
 
 entity tb_both_limits_positive is
 end entity tb_both_limits_positive;
@@ -26,7 +26,7 @@ begin
   
   s_clk <= not s_clk after C_CLK_PERIOD/2;
 
-  saturated_signed_adder_0 : entity vhdl_simple.saturated_signed_adder
+  saturated_signed_adder_0 : entity simple.saturated_signed_adder
   generic map (
     G_A_WIDTH => 9,
     G_B_WIDTH => 7,

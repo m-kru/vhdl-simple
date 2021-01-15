@@ -7,7 +7,7 @@ filesets:
     files:
       - simple.vhd
     file_type: vhdlSource-2008
-    logical_name: vhdl_simple
+    logical_name: simple
 
 targets:
   default:

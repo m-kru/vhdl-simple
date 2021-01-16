@@ -26,7 +26,7 @@ entity multiplexer is
    generic (
       G_INPUTS : positive;
       G_WIDTH  : positive;
-      G_REGISTER_OUTPUTS : boolean   := false;
+      G_REGISTER_OUTPUTS : boolean   := true;
       G_OVERRANGE_POLICY : string    := "value"; -- last, first or value
       G_OVERRANGE_VALUE  : std_logic := '-'
    );

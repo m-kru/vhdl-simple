@@ -1,0 +1,27 @@
+CAPI=2:
+
+name: :vhdl_simple:narrowing_register
+
+filesets:
+  rtl:
+    files:
+      - src/narrowing_register.vhd
+    file_type: vhdlSource-93
+    logical_name: simple
+
+  tb_:
+    files:
+      - tb/tb.vhd
+    file_type: vhdlSource-2008
+
+targets:
+  default:
+    filesets:
+      - rtl
+
+  tb_:
+    default_tool: ghdl
+    toplevel: tb
+    filesets:
+      - rtl
+      - tb_

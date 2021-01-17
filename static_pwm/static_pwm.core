@@ -6,12 +6,17 @@ filesets:
   rtl:
     files:
       - src/static_pwm.vhd
-    file_type: vhdlSource-93
+    file_type: vhdlSource-2008
     logical_name: simple
 
   tb_:
     files:
       - tb/tb.vhd
+    file_type: vhdlSource-2008
+
+  tb_start_after_reset:
+    files:
+      - tb/tb_start_after_reset.vhd
     file_type: vhdlSource-2008
 
 targets:
@@ -25,3 +30,10 @@ targets:
     filesets:
       - rtl
       - tb_
+
+  tb_start_after_reset:
+    default_tool: ghdl
+    toplevel: tb_start_after_reset
+    filesets:
+      - rtl
+      - tb_start_after_reset

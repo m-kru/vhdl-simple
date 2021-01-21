@@ -11,7 +11,7 @@ filesets:
     file_type: vhdlSource-2008
     logical_name: simple
 
-  tb_:
+  tb:
     files:
       - tb/tb.vhd
     file_type: vhdlSource-2008
@@ -21,9 +21,9 @@ targets:
     filesets:
       - rtl
 
-  tb_:
+  tb:
     default_tool: ghdl
     toplevel: tb
     filesets:
       - rtl
-      - tb_
+      - tb

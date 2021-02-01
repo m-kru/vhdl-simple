@@ -53,7 +53,7 @@ begin
          reg(C_WIDTH - 1 - G_OUTPUT_WIDTH downto 0) <= reg(C_WIDTH - 1 downto G_OUTPUT_WIDTH);
          reg(C_WIDTH - 1 downto C_WIDTH - G_OUTPUT_WIDTH) <= (others => G_SHIFT_VALUE);
 
-         if strobe_i then
+         if strobe_i = '1' then
             reg(index + G_INPUT_WIDTH - 1 downto index) <= input_i;
             if index < C_INDEX_MAX then
                index <= index + C_INDEX_DELTA;
@@ -62,7 +62,7 @@ begin
             end if;
          end if;
 
-         if rst_i then
+         if rst_i = '1' then
             reg <= (others => G_RESET_VALUE);
             index <= 0;
          end if;

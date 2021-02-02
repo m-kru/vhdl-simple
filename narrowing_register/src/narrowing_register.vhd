@@ -39,7 +39,7 @@ end entity;
 architecture rtl of Narrowing_Register is
 
    constant C_WIDTH : positive := G_OUTPUT_WIDTH * (G_INPUT_WIDTH / G_OUTPUT_WIDTH + 1);
-   constant C_INDEX_DELTA : positive := G_INPUT_WIDTH - (G_INPUT_WIDTH / G_OUTPUT_WIDTH) * G_OUTPUT_WIDTH;
+   constant C_INDEX_DELTA : natural := G_INPUT_WIDTH - (G_INPUT_WIDTH / G_OUTPUT_WIDTH) * G_OUTPUT_WIDTH;
    constant C_INDEX_MAX : positive := C_WIDTH - G_INPUT_WIDTH;
 
    signal reg : std_logic_vector(C_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);

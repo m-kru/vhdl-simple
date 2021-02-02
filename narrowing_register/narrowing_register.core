@@ -14,6 +14,11 @@ filesets:
       - tb/tb.vhd
     file_type: vhdlSource-2008
 
+  tb_divisible:
+    files:
+      - tb/tb_divisible.vhd
+    file_type: vhdlSource-2008
+
 targets:
   default:
     filesets:
@@ -25,3 +30,10 @@ targets:
     filesets:
       - rtl
       - tb
+
+  tb_divisible:
+    default_tool: ghdl
+    toplevel: tb_divisible
+    filesets:
+      - rtl
+      - tb_divisible

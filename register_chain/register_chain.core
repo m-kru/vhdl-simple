@@ -6,7 +6,7 @@ filesets:
   rtl:
     files:
       - src/register_chain.vhd
-    file_type: vhdlSource-93
+    file_type: vhdlSource-2008
     logical_name: simple
 
   tb:

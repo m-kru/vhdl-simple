@@ -12,17 +12,17 @@ filesets:
     tb_default_generics:
         files:
             - tb/tb_default_generics.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
     tb_comb:
         files:
             - tb/tb_comb.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
     tb_different_widths:
         files:
             - tb/tb_different_widths.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
 
 targets:
     default:

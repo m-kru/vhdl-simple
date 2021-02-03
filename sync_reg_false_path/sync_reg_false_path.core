@@ -6,7 +6,7 @@ filesets:
     rtl:
         files:
             - rtl/sync_reg_false_path.vhd
-        file_type: vhdlSource-93
+        file_type: vhdlSource-2008
         logical_name: simple
 
     vivado_constr:

@@ -3,20 +3,20 @@ CAPI=2:
 name: :vhdl_simple:sync_reg_false_path
 
 filesets:
-    rtl:
-        files:
-            - rtl/sync_reg_false_path.vhd
-        file_type: vhdlSource-2008
-        logical_name: simple
+  rtl:
+    files:
+      - rtl/sync_reg_false_path.vhd
+    file_type: vhdlSource-2008
+    logical_name: simple
 
-    vivado_constr:
-        files:
-            - constr/sync_reg_false_path.xdc : {file_type : xdc}
+  vivado_constr:
+    files:
+      - constr/sync_reg_false_path.xdc : {file_type : xdc}
 
-    tcl:
-        files:
-            - constr/sync_reg_false_path.tcl : {file_type : tclSource}
+  tcl:
+    files:
+      - constr/sync_reg_false_path.tcl : {file_type : tclSource}
 
 targets:
-    default:
-        filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]
+  default:
+    filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]

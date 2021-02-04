@@ -3,20 +3,20 @@ CAPI=2:
 name: :vhdl_simple:reset_synchronizer
 
 filesets:
-    rtl:
-        files:
-            - rtl/reset_synchronizer.vhd
-        file_type: vhdlSource-2008
-        logical_name: simple
+  rtl:
+    files:
+      - rtl/reset_synchronizer.vhd
+    file_type: vhdlSource-2008
+    logical_name: simple
 
-    vivado_constr:
-        files:
-            - constr/reset_synchronizer.xdc : {file_type : xdc}
+  vivado_constr:
+    files:
+      - constr/reset_synchronizer.xdc : {file_type : xdc}
 
-    tcl:
-        files:
-            - constr/reset_synchronizer.tcl : {file_type : tclSource}
+  tcl:
+    files:
+      - constr/reset_synchronizer.tcl : {file_type : tclSource}
 
 targets:
-    default:
-        filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]
+  default:
+    filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]

@@ -30,7 +30,7 @@ library ieee;
 entity sipo_register is
   generic (
     G_WIDTH            : positive  := 8;
-    G_INIT_VALUE       : std_logic := 'U';
+    G_INIT_VALUE       : std_logic := '0';
     G_RESET_VALUE      : std_logic := '0';
     G_REGISTER_OUTPUTS : boolean   := true
   );
@@ -39,7 +39,7 @@ entity sipo_register is
     rst_i    : in   std_logic := '0';
     d_i      : in   std_logic;
     d_o      : out  std_logic;
-    q_o      : out  std_logic_vector(G_WIDTH - 1 downto 0); -- Parallel output
+    q_o      : out  std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE); -- Parallel output
     -- Strobe is used only if G_REGISTER_OUTPUTS is set to true.
     strobe_i : in   std_logic := 'U'
   );

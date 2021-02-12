@@ -15,7 +15,7 @@ entity register_chain is
    generic (
       G_STAGES      : positive  := 1;
       G_WIDTH       : positive  := 1;
-      G_INIT_VALUE  : std_logic := 'U';
+      G_INIT_VALUE  : std_logic := '0';
       G_RESET_VALUE : std_logic := '0'
    );
    port (
@@ -23,7 +23,7 @@ entity register_chain is
       clk_enable_i : in  std_logic := '1';
       rst_i        : in  std_logic := '0';
       d_i          : in  std_logic_vector(G_WIDTH - 1 downto 0);
-      q_o          : out std_logic_vector(G_WIDTH - 1 downto 0)
+      q_o          : out std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
    );
 end entity;
 

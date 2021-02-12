@@ -34,7 +34,7 @@ entity piso_register is
     G_WIDTH        : positive  := 8;
     G_OUTPUT_WIDTH : positive  := 1;
     G_LSB_FIRST    : boolean   := true;
-    G_INIT_VALUE   : std_logic := 'U';
+    G_INIT_VALUE   : std_logic := '0';
     G_RESET_VALUE  : std_logic := '0'
   );
   port (
@@ -43,7 +43,7 @@ entity piso_register is
     serial_i   : in   std_logic := '0';
     parallel_i : in   std_logic_vector(G_WIDTH - 1 downto 0);
     strobe_i   : in   std_logic;
-    q_o        : out  std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0)
+    q_o        : out  std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
   );
 
 begin

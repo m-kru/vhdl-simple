@@ -23,6 +23,7 @@ entity static_pwm is
    generic (
       G_PERIOD        : positive;
       G_DUTY          : positive;
+      G_INIT_VALUE     : std_logic := '0';
       G_DISABLED_VALUE : std_logic := '0';
       G_START_ON_RESET : boolean   := true;
       G_RESET_VALUE    : std_logic := '0'
@@ -31,11 +32,15 @@ entity static_pwm is
       clk_i    : in  std_logic;
       rst_i    : in  std_logic := '0';
       enable_i : in  std_logic := '1';
-      out_o    : out std_logic
+      out_o    : out std_logic := G_INIT_VALUE
    );
 begin
    assert G_DUTY <= G_PERIOD
       report "G_DUTY (" & integer'image(G_DUTY) & ") must be lower than the G_PERIOD (" & integer'image(G_PERIOD) & ")"
+      severity failure;
+
+   assert G_DUTY /= 0
+      report "G_DUTY = 0 makes no sense"
       severity failure;
 end entity;
 

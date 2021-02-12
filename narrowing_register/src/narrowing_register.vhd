@@ -17,7 +17,7 @@ entity Narrowing_Register is
    generic (
       G_INPUT_WIDTH  : positive;
       G_OUTPUT_WIDTH : positive;
-      G_INIT_VALUE   : std_logic := 'U';
+      G_INIT_VALUE   : std_logic := '0';
       G_RESET_VALUE  : std_logic := '0';
       G_SHIFT_VALUE  : std_logic := '-'
    );
@@ -27,7 +27,7 @@ entity Narrowing_Register is
       rst_i        : in  std_logic := '0';
       input_i      : in  std_logic_vector(G_INPUT_WIDTH - 1 downto 0);
       strobe_i     : in  std_logic;
-      output_o     : out std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0)
+      output_o     : out std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
    );
 begin
    assert G_OUTPUT_WIDTH < G_INPUT_WIDTH

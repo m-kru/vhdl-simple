@@ -31,8 +31,8 @@ library ieee;
 
 entity piso_register is
   generic (
-    G_WIDTH        : positive  := 8;
-    G_OUTPUT_WIDTH : positive  := 1;
+    G_WIDTH        : positive;
+    G_OUTPUT_WIDTH : positive;
     G_LSB_FIRST    : boolean   := true;
     G_INIT_VALUE   : std_logic := '0';
     G_RESET_VALUE  : std_logic := '0'

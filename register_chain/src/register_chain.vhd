@@ -14,7 +14,7 @@ library ieee;
 entity register_chain is
    generic (
       G_STAGES      : positive  := 1;
-      G_WIDTH       : positive  := 1;
+      G_WIDTH       : positive;
       G_INIT_VALUE  : std_logic := '0';
       G_RESET_VALUE : std_logic := '0'
    );

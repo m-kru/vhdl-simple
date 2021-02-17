@@ -24,6 +24,10 @@ begin
   clk <= not clk after CLK_PERIOD/2;
 
   piso_register : entity simple.piso_register
+  generic map (
+     G_WIDTH => 8,
+     G_OUTPUT_WIDTH => 1
+  )
   port map (
     clk_i      => clk,
     rst_i      => reset,

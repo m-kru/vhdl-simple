@@ -30,7 +30,7 @@ use ieee.std_logic_1164.all;
 
 entity false_path_synchronization_register is
   generic (
-    G_WIDTH      : positive := 1;
+    G_WIDTH      : positive;
     G_INIT_VALUE : std_logic := '0'
   );
   port (

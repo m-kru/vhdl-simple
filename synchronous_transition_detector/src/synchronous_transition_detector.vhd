@@ -7,7 +7,7 @@ library ieee;
 
 entity synchronous_transition_detector is
    generic (
-      G_WIDTH : positive := 1;
+      G_WIDTH : positive;
       G_REGISTER_OUTPUTS : boolean := true
    );
    port (

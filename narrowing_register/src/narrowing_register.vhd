@@ -22,12 +22,12 @@ entity Narrowing_Register is
       G_SHIFT_VALUE  : std_logic := '-'
    );
    port (
-      clk_i        : in  std_logic;
-      clk_enable_i : in  std_logic := '1';
-      rst_i        : in  std_logic := '0';
-      input_i      : in  std_logic_vector(G_INPUT_WIDTH - 1 downto 0);
-      stb_i        : in  std_logic;
-      output_o     : out std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
+      clk_i    : in  std_logic;
+      clk_en_i : in  std_logic := '1';
+      rst_i    : in  std_logic := '0';
+      input_i  : in  std_logic_vector(G_INPUT_WIDTH - 1 downto 0);
+      stb_i    : in  std_logic;
+      output_o : out std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
    );
 begin
    assert G_OUTPUT_WIDTH < G_INPUT_WIDTH
@@ -49,7 +49,7 @@ begin
 
    process (clk_i) is
    begin
-      if rising_edge(clk_i) and clk_enable_i = '1' then
+      if rising_edge(clk_i) and clk_en_i = '1' then
          reg(C_WIDTH - 1 - G_OUTPUT_WIDTH downto 0) <= reg(C_WIDTH - 1 downto G_OUTPUT_WIDTH);
          reg(C_WIDTH - 1 downto C_WIDTH - G_OUTPUT_WIDTH) <= (others => G_SHIFT_VALUE);
 

@@ -19,11 +19,11 @@ entity register_chain is
       G_RESET_VALUE : std_logic := '0'
    );
    port (
-      clk_i        : in  std_logic;
-      clk_enable_i : in  std_logic := '1';
-      rst_i        : in  std_logic := '0';
-      d_i          : in  std_logic_vector(G_WIDTH - 1 downto 0);
-      q_o          : out std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
+      clk_i    : in  std_logic;
+      clk_en_i : in  std_logic := '1';
+      rst_i    : in  std_logic := '0';
+      d_i      : in  std_logic_vector(G_WIDTH - 1 downto 0);
+      q_o      : out std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
    );
 end entity;
 
@@ -37,7 +37,7 @@ begin
 
    process (clk_i) is
    begin
-      if rising_edge(clk_i) and clk_enable_i = '1' then
+      if rising_edge(clk_i) and clk_en_i = '1' then
          for i in 0 to G_STAGES - 1 loop
             if i = 0 then
                chain(0) <= d_i;

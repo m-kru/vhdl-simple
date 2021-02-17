@@ -32,11 +32,11 @@ begin
       G_OUTPUT_WIDTH => C_OUTPUT_WIDTH
    )
    port map (
-      clk_i    => clk,
-      rst_i    => rst,
-      input_i  => input,
-      stb_i    => strobe,
-      output_o => output
+      clk_i => clk,
+      rst_i => rst,
+      d_i   => input,
+      stb_i => strobe,
+      q_o   => output
    );
 
 

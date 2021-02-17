@@ -23,7 +23,12 @@ begin
   
   s_clk <= not s_clk after C_CLK_PERIOD/2;
 
-  saturated_signed_adder_0 : entity simple.saturated_signed_adder
+  DUT : entity simple.saturated_signed_adder
+  generic map (
+    G_A_WIDTH => 8,
+    G_B_WIDTH => 8,
+    G_RESULT_WIDTH => 8
+  )
   port map (
     clk_i  => s_clk,
     a_i    => s_a,

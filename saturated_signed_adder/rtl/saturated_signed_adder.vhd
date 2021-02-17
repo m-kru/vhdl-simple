@@ -32,9 +32,9 @@ library ieee;
 
 entity saturated_signed_adder is
   generic (
-    G_A_WIDTH          : positive := 8;
-    G_B_WIDTH          : positive := 8;
-    G_RESULT_WIDTH     : positive := 8;
+    G_A_WIDTH          : positive;
+    G_B_WIDTH          : positive;
+    G_RESULT_WIDTH     : positive;
     G_MAX_VALUE        : integer  := 0;
     G_MIN_VALUE        : integer  := 0;
     G_REGISTER_OUTPUTS : boolean  := true

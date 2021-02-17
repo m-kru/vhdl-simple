@@ -30,10 +30,10 @@ begin
       G_DUTY   => C_DUTY
    )
    port map (
-      clk_i    => clk,
-      rst_i    => rst,
-      enable_i => enable,
-      out_o    => s_out
+      clk_i => clk,
+      rst_i => rst,
+      en_i  => enable,
+      out_o => s_out
    );
 
 

@@ -31,10 +31,10 @@ begin
       G_START_ON_RESET => false
    )
    port map (
-      clk_i    => clk,
-      rst_i    => rst,
-      enable_i => enable,
-      out_o    => s_out
+      clk_i => clk,
+      rst_i => rst,
+      en_i  => enable,
+      out_o => s_out
    );
 
 

@@ -29,10 +29,10 @@ entity static_pwm is
       G_RESET_VALUE    : std_logic := '0'
    );
    port (
-      clk_i    : in  std_logic;
-      rst_i    : in  std_logic := '0';
-      enable_i : in  std_logic := '1';
-      out_o    : out std_logic := G_INIT_VALUE
+      clk_i : in  std_logic;
+      rst_i : in  std_logic := '0';
+      en_i  : in  std_logic := '1';
+      out_o : out std_logic := G_INIT_VALUE
    );
 begin
    assert G_DUTY <= G_PERIOD
@@ -69,7 +69,7 @@ begin
                out_o <= '0';
             end if;
 
-            if enable_i = '0' then
+            if en_i = '0' then
                out_o <= G_DISABLED_VALUE;
             end if;
          end if;
@@ -99,7 +99,7 @@ begin
                out_o <= '0';
             end if;
 
-            if enable_i = '0' then
+            if en_i = '0' then
                out_o <= G_DISABLED_VALUE;
             end if;
          end if;

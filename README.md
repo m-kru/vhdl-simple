@@ -25,6 +25,14 @@ There are no abbreviations in the entity names as these are *nomina propria*.
 
 Generics names start with **G_**.
 
+Entities share some generic names, which always indicate the same functionality:
+- **G_DISABLED_VALUE** - value assigned to outputs when module is disabled,
+- **G_REGISTER_OUTPUTS** - option to register outputs (default *true*),
+- **G_INIT_VALUE** - initial value for output or internal state (default *'0'*),
+- **G_INPUT_WIDTH** - width of input,
+- **G_OUTPUT_WIDTH** - width of output,
+- **G_WIDTH** - width of input *and* output.
+
 ### Port names
 
 Port names end with suffix indicating theirs direction: **_i**, **_o**.

@@ -23,7 +23,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  piso_register : entity simple.piso_register
+  DUT : entity simple.parallel_in_serial_out_register
   generic map (
     G_WIDTH        => 4,
     G_OUTPUT_WIDTH => 2,

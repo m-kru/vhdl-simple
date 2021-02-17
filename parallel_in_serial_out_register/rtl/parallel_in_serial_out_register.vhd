@@ -29,7 +29,7 @@
 library ieee;
   use ieee.std_logic_1164.all;
 
-entity piso_register is
+entity parallel_in_serial_out_register is
   generic (
     G_WIDTH        : positive;
     G_OUTPUT_WIDTH : positive;
@@ -52,9 +52,9 @@ begin
     report "G_OUTPUT_WIDTH (" & integer'image(G_OUTPUT_WIDTH) & ") must be less than or equal to G_WIDTH (" & integer'image(G_WIDTH) & ")"
     severity failure;
 
-end entity piso_register;
+end entity;
 
-architecture rtl of piso_register is
+architecture rtl of parallel_in_serial_out_register is
 
   signal internal_reg : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
 

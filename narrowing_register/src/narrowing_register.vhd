@@ -8,7 +8,7 @@ library ieee;
 -- Narrowing_Register is a register for passing data from the domain with
 -- primary data width N to the domain with primary data width M < N.
 --
--- It is user responsibility to provide input_i and strobe_i in proper
+-- It is user responsibility to provide input_i and stb_i in proper
 -- clock cycles. 'Proper' means one clock cycle before the number of
 -- valid bits in the internal register is less than G_OUTPUT_WIDTH.
 -- 
@@ -26,7 +26,7 @@ entity Narrowing_Register is
       clk_enable_i : in  std_logic := '1';
       rst_i        : in  std_logic := '0';
       input_i      : in  std_logic_vector(G_INPUT_WIDTH - 1 downto 0);
-      strobe_i     : in  std_logic;
+      stb_i        : in  std_logic;
       output_o     : out std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
    );
 begin
@@ -53,7 +53,7 @@ begin
          reg(C_WIDTH - 1 - G_OUTPUT_WIDTH downto 0) <= reg(C_WIDTH - 1 downto G_OUTPUT_WIDTH);
          reg(C_WIDTH - 1 downto C_WIDTH - G_OUTPUT_WIDTH) <= (others => G_SHIFT_VALUE);
 
-         if strobe_i = '1' then
+         if stb_i = '1' then
             reg(index + G_INPUT_WIDTH - 1 downto index) <= input_i;
             if index < C_INDEX_MAX then
                index <= index + C_INDEX_DELTA;

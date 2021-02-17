@@ -7,7 +7,7 @@
 --
 -- Description:
 --  SIPO register which can be configured to work with or without output
---  register. When G_REGISTER_OUTPUTS is set to false, the strobe_i input can
+--  register. When G_REGISTER_OUTPUTS is set to false, the stb_i input can
 --  be left unconnected.
 --
 --------------------------------------------------------------------------------
@@ -35,13 +35,13 @@ entity sipo_register is
     G_REGISTER_OUTPUTS : boolean   := true
   );
   port (
-    clk_i    : in   std_logic;
-    rst_i    : in   std_logic := '0';
-    d_i      : in   std_logic;
-    d_o      : out  std_logic;
-    q_o      : out  std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE); -- Parallel output
+    clk_i : in   std_logic;
+    rst_i : in   std_logic := '0';
+    d_i   : in   std_logic;
+    d_o   : out  std_logic;
+    q_o   : out  std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE); -- Parallel output
     -- Strobe is used only if G_REGISTER_OUTPUTS is set to true.
-    strobe_i : in   std_logic := 'U'
+    stb_i : in   std_logic := 'U'
   );
 
 end entity sipo_register;
@@ -83,7 +83,7 @@ begin
       if rising_edge(clk_i) then
         if rst_i = '1' then
           q_output <= (others => G_RESET_VALUE);
-        elsif strobe_i = '1' then
+        elsif stb_i = '1' then
           q_output <= q_internal;
         end if; 
       end if;

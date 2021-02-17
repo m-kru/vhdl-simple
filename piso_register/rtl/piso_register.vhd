@@ -42,7 +42,7 @@ entity piso_register is
     rst_i      : in   std_logic := '0';
     serial_i   : in   std_logic := '0';
     parallel_i : in   std_logic_vector(G_WIDTH - 1 downto 0);
-    strobe_i   : in   std_logic;
+    stb_i      : in   std_logic;
     q_o        : out  std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
   );
 
@@ -70,7 +70,7 @@ begin
         if rst_i = '1' then
           internal_reg <= (others => G_RESET_VALUE);
         else
-          if strobe_i = '1' then
+          if stb_i = '1' then
             internal_reg <= parallel_i;
           else
             internal_reg(G_WIDTH - 1) <= serial_i;
@@ -90,7 +90,7 @@ begin
         if rst_i = '1' then
           internal_reg <= (others => G_RESET_VALUE);
         else
-          if strobe_i = '1' then
+          if stb_i = '1' then
             internal_reg <= parallel_i;
           else
             internal_reg(0) <= serial_i;

@@ -34,7 +34,7 @@ begin
     clk_i      => clk,
     rst_i      => reset,
     parallel_i => parallel,
-    strobe_i   => strobe,
+    stb_i      => strobe,
     q_o        => q
   );
 

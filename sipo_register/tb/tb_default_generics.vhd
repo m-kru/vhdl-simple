@@ -25,12 +25,12 @@ begin
 
   sipo_register_0 : entity simple.sipo_register
   port map (
-    clk_i    => clk,
-    rst_i    => reset,
-    d_i      => din,
-    d_o      => dout,
-    q_o      => q,
-    strobe_i => strobe
+    clk_i => clk,
+    rst_i => reset,
+    d_i   => din,
+    d_o   => dout,
+    q_o   => q,
+    stb_i => strobe
   );
 
   stimuli_generator: process

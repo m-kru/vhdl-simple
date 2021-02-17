@@ -35,7 +35,7 @@ begin
       clk_i    => clk,
       rst_i    => rst,
       input_i  => input,
-      strobe_i => strobe,
+      stb_i    => strobe,
       output_o => output
    );
 

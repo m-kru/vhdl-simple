@@ -24,7 +24,7 @@ begin
 
   DUT : entity simple.serial_in_parallel_out_register
   generic map (
-    G_WIDTH            => 4,
+    G_OUTPUT_WIDTH     => 4,
     G_REGISTER_OUTPUTS => false
   )
   port map (

@@ -31,7 +31,7 @@ library ieee;
 
 entity parallel_in_serial_out_register is
   generic (
-    G_WIDTH        : positive;
+    G_INPUT_WIDTH  : positive;
     G_OUTPUT_WIDTH : positive;
     G_LSB_FIRST    : boolean   := true;
     G_INIT_VALUE   : std_logic := '0';
@@ -41,22 +41,22 @@ entity parallel_in_serial_out_register is
     clk_i      : in   std_logic;
     rst_i      : in   std_logic := '0';
     serial_i   : in   std_logic := '0';
-    parallel_i : in   std_logic_vector(G_WIDTH - 1 downto 0);
+    parallel_i : in   std_logic_vector(G_INPUT_WIDTH - 1 downto 0);
     stb_i      : in   std_logic;
     q_o        : out  std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
   );
 
 begin
 
-  assert G_WIDTH >= G_OUTPUT_WIDTH
-    report "G_OUTPUT_WIDTH (" & integer'image(G_OUTPUT_WIDTH) & ") must be less than or equal to G_WIDTH (" & integer'image(G_WIDTH) & ")"
+  assert G_INPUT_WIDTH >= G_OUTPUT_WIDTH
+    report "G_OUTPUT_WIDTH (" & integer'image(G_OUTPUT_WIDTH) & ") must be less than or equal to G_INPUT_WIDTH (" & integer'image(G_INPUT_WIDTH) & ")"
     severity failure;
 
 end entity;
 
 architecture rtl of parallel_in_serial_out_register is
 
-  signal internal_reg : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
+  signal internal_reg : std_logic_vector(G_INPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
 
 begin
 
@@ -73,8 +73,8 @@ begin
           if stb_i = '1' then
             internal_reg <= parallel_i;
           else
-            internal_reg(G_WIDTH - 1) <= serial_i;
-            internal_reg(G_WIDTH - 2 downto 0) <= internal_reg(G_WIDTH - 1 downto 1);
+            internal_reg(G_INPUT_WIDTH - 1) <= serial_i;
+            internal_reg(G_INPUT_WIDTH - 2 downto 0) <= internal_reg(G_INPUT_WIDTH - 1 downto 1);
           end if;
         end if;
       end if;
@@ -82,7 +82,7 @@ begin
 
   else generate
 
-    q_o <= internal_reg(G_WIDTH - 1 downto G_WIDTH - G_OUTPUT_WIDTH);
+    q_o <= internal_reg(G_INPUT_WIDTH - 1 downto G_INPUT_WIDTH - G_OUTPUT_WIDTH);
 
     process(clk_i)
     begin
@@ -94,7 +94,7 @@ begin
             internal_reg <= parallel_i;
           else
             internal_reg(0) <= serial_i;
-            internal_reg(G_WIDTH - 1 downto 1) <= internal_reg(G_WIDTH - 2 downto 0);
+            internal_reg(G_INPUT_WIDTH - 1 downto 1) <= internal_reg(G_INPUT_WIDTH - 2 downto 0);
           end if;
         end if;
       end if;

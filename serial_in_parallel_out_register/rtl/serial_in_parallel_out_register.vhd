@@ -29,7 +29,7 @@ library ieee;
 
 entity serial_in_parallel_out_register is
   generic (
-    G_WIDTH            : positive  := 8;
+    G_OUTPUT_WIDTH     : positive;
     G_INIT_VALUE       : std_logic := '0';
     G_RESET_VALUE      : std_logic := '0';
     G_REGISTER_OUTPUTS : boolean   := true
@@ -39,7 +39,7 @@ entity serial_in_parallel_out_register is
     rst_i : in   std_logic := '0';
     d_i   : in   std_logic;
     d_o   : out  std_logic;
-    q_o   : out  std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE); -- Parallel output
+    q_o   : out  std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE); -- Parallel output
     -- Strobe is used only if G_REGISTER_OUTPUTS is set to true.
     stb_i : in   std_logic := 'U'
   );
@@ -48,12 +48,12 @@ end entity;
 
 architecture rtl of serial_in_parallel_out_register is
 
-  signal q_internal : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
-  signal q_output   : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
+  signal q_internal : std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
+  signal q_output   : std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
 
 begin
 
-  d_o <= q_internal(G_WIDTH - 1);
+  d_o <= q_internal(G_OUTPUT_WIDTH - 1);
 
   shift : process(clk_i)
   begin
@@ -61,7 +61,7 @@ begin
       if rst_i = '1' then
         q_internal <= (others => G_RESET_VALUE);
       else
-        for i in 0 to G_WIDTH - 1 loop
+        for i in 0 to G_OUTPUT_WIDTH - 1 loop
           if i = 0 then
             q_internal(0) <= d_i;
           else

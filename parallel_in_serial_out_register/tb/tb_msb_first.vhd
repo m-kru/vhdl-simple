@@ -25,7 +25,7 @@ begin
 
   DUT : entity simple.parallel_in_serial_out_register
   generic map (
-    G_WIDTH        => 4,
+    G_INPUT_WIDTH  => 4,
     G_OUTPUT_WIDTH => 2,
     G_LSB_FIRST    => false,
     G_RESET_VALUE  => '1'

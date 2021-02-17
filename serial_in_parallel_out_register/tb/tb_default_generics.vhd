@@ -24,6 +24,9 @@ begin
   clk <= not clk after CLK_PERIOD/2;
 
   DUT : entity simple.serial_in_parallel_out_register
+  generic map (
+     G_OUTPUT_WIDTH => 8
+  )
   port map (
     clk_i => clk,
     rst_i => reset,

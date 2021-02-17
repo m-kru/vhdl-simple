@@ -23,7 +23,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  sipo_register_0 : entity simple.sipo_register
+  DUT : entity simple.serial_in_parallel_out_register
   port map (
     clk_i => clk,
     rst_i => reset,

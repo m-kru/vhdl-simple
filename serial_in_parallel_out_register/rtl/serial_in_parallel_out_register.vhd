@@ -27,7 +27,7 @@
 library ieee;
   use ieee.std_logic_1164.all;
 
-entity sipo_register is
+entity serial_in_parallel_out_register is
   generic (
     G_WIDTH            : positive  := 8;
     G_INIT_VALUE       : std_logic := '0';
@@ -44,9 +44,9 @@ entity sipo_register is
     stb_i : in   std_logic := 'U'
   );
 
-end entity sipo_register;
+end entity;
 
-architecture rtl of sipo_register is
+architecture rtl of serial_in_parallel_out_register is
 
   signal q_internal : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
   signal q_output   : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);

@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:sipo_register
+name: :vhdl_simple:serial_in_parallel_out_register
 
 filesets:
   rtl:
     files:
-      - rtl/sipo_register.vhd
+      - rtl/serial_in_parallel_out_register.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 

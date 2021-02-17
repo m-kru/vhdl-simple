@@ -22,7 +22,7 @@ begin
 
   clk <= not clk after CLK_PERIOD/2;
 
-  sipo_register_0 : entity simple.sipo_register
+  DUT : entity simple.serial_in_parallel_out_register
   generic map (
     G_WIDTH            => 4,
     G_REGISTER_OUTPUTS => false

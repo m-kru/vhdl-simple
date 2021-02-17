@@ -9,6 +9,8 @@ end entity tb_default_generics;
 
 architecture tb of tb_default_generics is
 
+  constant C_WIDTH : positive := 8;
+
   constant C_CLK_PERIOD : time := 10 ns;
   signal s_clk : std_logic := '0';
 
@@ -23,7 +25,12 @@ begin
   
   s_clk <= not s_clk after C_CLK_PERIOD/2;
 
-  saturated_unsigned_adder_0 : entity simple.saturated_unsigned_adder
+  DUT : entity simple.saturated_unsigned_adder
+  generic map (
+     G_A_WIDTH => C_WIDTH,
+     G_B_WIDTH => C_WIDTH,
+     G_RESULT_WIDTH => C_WIDTH
+  )
   port map (
     clk_i  => s_clk,
     a_i    => s_a,

@@ -9,6 +9,8 @@ end entity tb_comb;
 
 architecture tb of tb_comb is
 
+  constant C_WIDTH : positive := 8;
+
   constant C_COMB_DELAY : time := 10 ns;
 
   constant C_MAX_VALUE : integer := 201;
@@ -25,6 +27,9 @@ begin
   
   saturated_unsigned_adder_0 : entity simple.saturated_unsigned_adder
   generic map (
+    G_A_WIDTH => C_WIDTH,
+    G_B_WIDTH => C_WIDTH,
+    G_RESULT_WIDTH => C_WIDTH,
     G_MAX_VALUE => C_MAX_VALUE,
     G_MIN_VALUE => C_MIN_VALUE,
     G_REGISTER_OUTPUTS => false

@@ -14,3 +14,27 @@ Therefore, the goals of vhdl\_simple library are to:
 - Never introduce changes, that would force updating entity instantiation.
 
 Thanks to these, version is not needed in FuseSoc VLNV (Vendor:Library:Name:Version) tags.
+
+## Naming conventions
+
+### Entity names
+
+There are no abbreviations in the entity names as these are *nomina propria*.
+
+### Generic names
+
+Generics names start with **G_**.
+
+### Port names
+
+Port names end with suffix indicating theirs direction: **_i**, **_o**.
+
+Entities share some port names, which always indicate the same functionality:
+- **addr_i** - address input,
+- **d_i** - data input,
+- **clk_i** - clock input,
+- **clk_en_i** - clock enable input,
+- **q_o** - data output,
+- **rst_i** - reset input,
+- **stb_i** - strobe input,
+- **wr_en_i** - write enable input.

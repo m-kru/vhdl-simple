@@ -28,7 +28,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity sync_reg_false_path is
+entity false_path_synchronization_register is
   generic (
     G_WIDTH      : positive := 1;
     G_INIT_VALUE : std_logic := '0'
@@ -38,12 +38,12 @@ entity sync_reg_false_path is
     d_i   : in  std_logic_vector(G_WIDTH-1 downto 0);
     q_o   : out std_logic_vector(G_WIDTH-1 downto 0)
   );
-end entity sync_reg_false_path;
+end entity;
 
 -- Disable Quartus warning about unrecognized attributes.
 -- altera message_off 10335
 
-architecture rtl of sync_reg_false_path is
+architecture rtl of false_path_synchronization_register is
   
   signal s_0, s_1 : std_logic_vector(G_WIDTH-1 downto 0) := (others => G_INIT_VALUE);
 

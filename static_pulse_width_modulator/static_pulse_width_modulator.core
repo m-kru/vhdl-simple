@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:static_pwm
+name: :vhdl_simple:static_pulse_width_modulator
 
 filesets:
   rtl:
     files:
-      - src/static_pwm.vhd
+      - src/static_pulse_width_modulator.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 

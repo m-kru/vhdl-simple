@@ -3,10 +3,10 @@ library ieee;
 
 library simple;
 
-entity tb_start_after_reset is
+entity tb is
 end entity;
 
-architecture test of tb_start_after_reset is
+architecture test of tb is
    constant C_PERIOD : positive := 10;
    constant C_DUTY   : positive := 3;
 
@@ -24,11 +24,10 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity simple.static_pwm
+   DUT : entity simple.static_pulse_width_modulator
    generic map (
-      G_PERIOD         => C_PERIOD,
-      G_DUTY           => C_DUTY,
-      G_START_ON_RESET => false
+      G_PERIOD => C_PERIOD,
+      G_DUTY   => C_DUTY
    )
    port map (
       clk_i => clk,
@@ -65,9 +64,9 @@ begin
    checker : process
    begin
       wait for C_PERIOD * C_CLK_PERIOD;
-      assert ones_count = 3 report "After first period number of ones should equal 3" severity failure;
+      assert ones_count = 2 report "After first period number of ones should equal 2" severity failure;
       wait for C_PERIOD * C_CLK_PERIOD;
-      assert ones_count = 6 report "After second period number of ones should equal 6" severity failure;
+      assert ones_count = 5 report "After second period number of ones should equal 5" severity failure;
       wait;
    end process;
 
@@ -77,8 +76,8 @@ begin
    begin
       wait until rst = '1';
       old_ones_count := ones_count;
-      wait until rst = '0';
-      assert ones_count = old_ones_count report "Wrong count of ones after reset" severity failure;
+      wait for (C_DUTY + 1) * C_CLK_PERIOD;
+      assert ones_count = old_ones_count + C_DUTY report "Wrong count of ones after reset" severity failure;
    end process;
 
 

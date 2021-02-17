@@ -5,7 +5,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- static_pwm is a simple PWM (Pulse-Width Modulation) entity
+-- static_pulse_width_modulator is a simple PWM (Pulse-Width Modulation) entity
 -- with the duty cycle statically configured.
 -- 
 -- Both G_PERIOD and G_DUTY are in clock cycles!
@@ -19,7 +19,7 @@ library ieee;
 -- (G_START_ON_RESET = true) or after the rst_i is deasserted
 -- (G_START_ON_RESET = false). G_RESET_VALUE is used only if
 -- G_START_ON_RESET = false.
-entity static_pwm is
+entity static_pulse_width_modulator is
    generic (
       G_PERIOD        : positive;
       G_DUTY          : positive;
@@ -44,7 +44,7 @@ begin
       severity failure;
 end entity;
 
-architecture behavioral of static_pwm is
+architecture behavioral of static_pulse_width_modulator is
 begin
 
    reset_policy : if G_START_ON_RESET = true generate

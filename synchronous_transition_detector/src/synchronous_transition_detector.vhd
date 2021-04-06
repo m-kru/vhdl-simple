@@ -8,6 +8,7 @@ library ieee;
 entity synchronous_transition_detector is
    generic (
       G_WIDTH : positive;
+      G_INIT_PREVIOUS : std_logic := '0';
       G_REGISTER_OUTPUTS : boolean := true
    );
    port (
@@ -21,7 +22,7 @@ end entity;
 
 architecture rtl of synchronous_transition_detector is
 
-   signal previous_data : std_logic_vector(G_WIDTH - 1 downto 0);
+   signal previous_data : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_PREVIOUS);
 
    signal transition  : std_logic_vector(G_WIDTH - 1 downto 0);
    signal zero_to_one : std_logic_vector(G_WIDTH - 1 downto 0);
@@ -44,16 +45,14 @@ begin
       one_to_zero <= (others => '0');
 
       for i in data_i'range loop
-         if data_i(i) /= previous_data(i) then
-            transition(i) <= '1';
-         end if;
-
          if previous_data(i) = '0' and data_i(i) = '1' then
             zero_to_one(i) <= '1';
+            transition(i) <= '1';
          end if;
 
          if previous_data(i) = '1' and data_i(i) = '0' then
             one_to_zero(i) <= '1';
+            transition(i) <= '1';
          end if;
       end loop;
    end process;

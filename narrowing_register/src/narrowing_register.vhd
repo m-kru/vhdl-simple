@@ -49,22 +49,24 @@ begin
 
    process (clk_i) is
    begin
-      if rising_edge(clk_i) and clk_en_i = '1' then
-         reg(C_WIDTH - 1 - G_OUTPUT_WIDTH downto 0) <= reg(C_WIDTH - 1 downto G_OUTPUT_WIDTH);
-         reg(C_WIDTH - 1 downto C_WIDTH - G_OUTPUT_WIDTH) <= (others => G_SHIFT_VALUE);
+      if rising_edge(clk_i) then
+         if clk_en_i = '1' then
+            reg(C_WIDTH - 1 - G_OUTPUT_WIDTH downto 0) <= reg(C_WIDTH - 1 downto G_OUTPUT_WIDTH);
+            reg(C_WIDTH - 1 downto C_WIDTH - G_OUTPUT_WIDTH) <= (others => G_SHIFT_VALUE);
 
-         if stb_i = '1' then
-            reg(index + G_INPUT_WIDTH - 1 downto index) <= d_i;
-            if index < C_INDEX_MAX then
-               index <= index + C_INDEX_DELTA;
-            else
+            if stb_i = '1' then
+               reg(index + G_INPUT_WIDTH - 1 downto index) <= d_i;
+               if index < C_INDEX_MAX then
+                  index <= index + C_INDEX_DELTA;
+               else
+                  index <= 0;
+               end if;
+            end if;
+
+            if rst_i = '1' then
+               reg <= (others => G_RESET_VALUE);
                index <= 0;
             end if;
-         end if;
-
-         if rst_i = '1' then
-            reg <= (others => G_RESET_VALUE);
-            index <= 0;
          end if;
       end if;
    end process;

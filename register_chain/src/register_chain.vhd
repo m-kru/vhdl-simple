@@ -37,19 +37,21 @@ begin
 
    process (clk_i) is
    begin
-      if rising_edge(clk_i) and clk_en_i = '1' then
-         for i in 0 to G_STAGES - 1 loop
-            if i = 0 then
-               chain(0) <= d_i;
-            else
-               chain(i) <= chain(i - 1);
-            end if;
-         end loop;
-
-         if rst_i = '1' then
+      if rising_edge(clk_i) then
+         if clk_en_i = '1' then
             for i in 0 to G_STAGES - 1 loop
-               chain(i) <= (others => G_RESET_VALUE);
+               if i = 0 then
+                  chain(0) <= d_i;
+               else
+                  chain(i) <= chain(i - 1);
+               end if;
             end loop;
+
+            if rst_i = '1' then
+               for i in 0 to G_STAGES - 1 loop
+                  chain(i) <= (others => G_RESET_VALUE);
+               end loop;
+            end if;
          end if;
       end if;
    end process;

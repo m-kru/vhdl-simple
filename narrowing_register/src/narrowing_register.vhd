@@ -38,12 +38,21 @@ end entity;
 
 architecture rtl of Narrowing_Register is
 
+   attribute dont_touch : string;
+
    constant C_WIDTH : positive := G_OUTPUT_WIDTH * (G_INPUT_WIDTH / G_OUTPUT_WIDTH + 1);
    constant C_INDEX_DELTA : natural := G_INPUT_WIDTH - (G_INPUT_WIDTH / G_OUTPUT_WIDTH) * G_OUTPUT_WIDTH;
    constant C_INDEX_MAX : positive := C_WIDTH - G_INPUT_WIDTH;
 
    signal reg : std_logic_vector(C_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
    signal index : natural range 0 to C_INDEX_MAX;
+
+   -- For some combinations of G_INPUT_WIDTH and G_OUTPUT_WIDTH Vivado optimizes out
+   -- part of the reg register. The smulations work correctly, however the design behaves
+   -- in different way.
+   -- After hours of debugging I haven't managed to find out why.
+   -- Even with '-debug_log' options there is no infomration in the logs.
+   attribute dont_touch of reg : signal is "true";
 
 begin
 

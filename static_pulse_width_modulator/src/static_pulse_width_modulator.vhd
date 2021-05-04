@@ -13,7 +13,7 @@ library ieee;
 -- However it gives better control, because the user decides how to round.
 -- Useful when G_PERIOD and G_DUTY are relatively small numbers.
 --
--- G_DISABLED_VALUE is the value set to the out_o when module is disabled.
+-- G_DISABLED_VALUE is the value set to the q_o when module is disabled.
 --
 -- G_START_ON_RESET determines whether counting should start on reset
 -- (G_START_ON_RESET = true) or after the rst_i is deasserted
@@ -29,10 +29,11 @@ entity static_pulse_width_modulator is
       G_RESET_VALUE    : std_logic := '0'
    );
    port (
-      clk_i : in  std_logic;
-      rst_i : in  std_logic := '0';
-      en_i  : in  std_logic := '1';
-      out_o : out std_logic := G_INIT_VALUE
+      clk_i    : in  std_logic;
+      clk_en_i : in  std_logic := '1';
+      rst_i    : in  std_logic := '0';
+      en_i     : in  std_logic := '1';
+      q_o      : out std_logic := G_INIT_VALUE
    );
 begin
    assert G_DUTY <= G_PERIOD
@@ -53,24 +54,26 @@ begin
          variable counter : natural range 0 to G_PERIOD - 1;
       begin
          if rising_edge(clk_i) then
-            if rst_i = '1' then
-               counter := 0;
-            else
-               if counter = G_PERIOD - 1  then
+            if clk_en_i = '1' then
+               if rst_i = '1' then
                   counter := 0;
                else
-                  counter := counter + 1;
+                  if counter = G_PERIOD - 1  then
+                     counter := 0;
+                  else
+                     counter := counter + 1;
+                  end if;
                end if;
-            end if;
 
-            out_o <= '1';
+               q_o <= '1';
 
-            if counter >= G_DUTY then
-               out_o <= '0';
-            end if;
+               if counter >= G_DUTY then
+                  q_o <= '0';
+               end if;
 
-            if en_i = '0' then
-               out_o <= G_DISABLED_VALUE;
+               if en_i = '0' then
+                  q_o <= G_DISABLED_VALUE;
+               end if;
             end if;
          end if;
       end process;
@@ -81,26 +84,28 @@ begin
          variable counter : natural range 0 to G_PERIOD;
       begin
          if rising_edge(clk_i) then
-            if rst_i = '1' then
-               counter := 0;
-            else
-               if counter = G_PERIOD then
-                  counter := 1;
+            if clk_en_i = '1' then
+               if rst_i = '1' then
+                  counter := 0;
                else
-                  counter := counter + 1;
+                  if counter = G_PERIOD then
+                     counter := 1;
+                  else
+                     counter := counter + 1;
+                  end if;
                end if;
-            end if;
 
-            out_o <= '1';
+               q_o <= '1';
 
-            if counter = 0 then
-               out_o <= G_RESET_VALUE;
-            elsif counter > G_DUTY then
-               out_o <= '0';
-            end if;
+               if counter = 0 then
+                  q_o <= G_RESET_VALUE;
+               elsif counter > G_DUTY then
+                  q_o <= '0';
+               end if;
 
-            if en_i = '0' then
-               out_o <= G_DISABLED_VALUE;
+               if en_i = '0' then
+                  q_o <= G_DISABLED_VALUE;
+               end if;
             end if;
          end if;
       end process;

@@ -33,7 +33,7 @@ begin
       clk_i => clk,
       rst_i => rst,
       en_i  => enable,
-      out_o => s_out
+      q_o   => s_out
    );
 
 

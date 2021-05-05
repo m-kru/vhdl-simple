@@ -28,7 +28,7 @@ begin
    )
    port map (
       clk_i            => clk,
-      data_i(0)        => data,
+      d_i(0)           => data,
       transition_o(0)  => transition,
       zero_to_one_o(0) => zero_to_one,
       one_to_zero_o(0) => one_to_zero

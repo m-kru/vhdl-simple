@@ -13,7 +13,8 @@ entity synchronous_transition_detector is
    );
    port (
       clk_i         : in  std_logic;
-      data_i        : in  std_logic_vector(G_WIDTH - 1 downto 0);
+      clk_en_i      : in  std_logic := '1';
+      d_i           : in  std_logic_vector(G_WIDTH - 1 downto 0);
       transition_o  : out std_logic_vector(G_WIDTH - 1 downto 0);
       zero_to_one_o : out std_logic_vector(G_WIDTH - 1 downto 0);
       one_to_zero_o : out std_logic_vector(G_WIDTH - 1 downto 0)
@@ -33,7 +34,9 @@ begin
    latch : process (clk_i) is
    begin
       if rising_edge(clk_i) then
-         previous_data <= data_i;
+         if clk_en_i = '1' then
+            previous_data <= d_i;
+         end if;
       end if;
    end process;
 
@@ -44,13 +47,13 @@ begin
       zero_to_one <= (others => '0');
       one_to_zero <= (others => '0');
 
-      for i in data_i'range loop
-         if previous_data(i) = '0' and data_i(i) = '1' then
+      for i in d_i'range loop
+         if previous_data(i) = '0' and d_i(i) = '1' then
             zero_to_one(i) <= '1';
             transition(i) <= '1';
          end if;
 
-         if previous_data(i) = '1' and data_i(i) = '0' then
+         if previous_data(i) = '1' and d_i(i) = '0' then
             one_to_zero(i) <= '1';
             transition(i) <= '1';
          end if;
@@ -63,9 +66,11 @@ begin
       process (clk_i) is
       begin
          if rising_edge(clk_i) then
-            transition_o  <= transition;
-            zero_to_one_o <= zero_to_one;
-            one_to_zero_o <= one_to_zero;
+            if clk_en_i = '1' then
+               transition_o  <= transition;
+               zero_to_one_o <= zero_to_one;
+               one_to_zero_o <= one_to_zero;
+            end if;
          end if;
       end process;
 

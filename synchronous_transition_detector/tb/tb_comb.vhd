@@ -30,7 +30,7 @@ begin
    )
    port map (
       clk_i         => clk,
-      data_i        => data,
+      d_i           => data,
       transition_o  => transition,
       zero_to_one_o => zero_to_one,
       one_to_zero_o => one_to_zero

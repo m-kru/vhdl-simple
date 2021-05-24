@@ -21,12 +21,13 @@ library ieee;
 -- G_START_ON_RESET = false.
 entity static_pulse_width_modulator is
    generic (
-      G_PERIOD        : positive;
-      G_DUTY          : positive;
-      G_INIT_VALUE     : std_logic := '0';
-      G_DISABLED_VALUE : std_logic := '0';
-      G_START_ON_RESET : boolean   := true;
-      G_RESET_VALUE    : std_logic := '0'
+      G_PERIOD             : positive;
+      G_DUTY               : positive;
+      G_INIT_VALUE         : std_logic := '0';
+      G_INIT_COUNTER_VALUE : natural   := 0;
+      G_DISABLED_VALUE     : std_logic := '0';
+      G_START_ON_RESET     : boolean   := true;
+      G_RESET_VALUE        : std_logic := '0'
    );
    port (
       clk_i    : in  std_logic;
@@ -37,11 +38,15 @@ entity static_pulse_width_modulator is
    );
 begin
    assert G_DUTY <= G_PERIOD
-      report "G_DUTY (" & integer'image(G_DUTY) & ") must be lower than the G_PERIOD (" & integer'image(G_PERIOD) & ")"
+      report "G_DUTY (" & integer'image(G_DUTY) & ") must be lower than G_PERIOD (" & integer'image(G_PERIOD) & ")"
       severity failure;
 
    assert G_DUTY /= 0
       report "G_DUTY = 0 makes no sense"
+      severity failure;
+
+   assert G_INIT_COUNTER_VALUE < G_PERIOD
+      report "G_INIT_COUNTER_VALUE (" & integer'image(G_INIT_COUNTER_VALUE) & ") must be lower than G_PERIOD (" & integer'image(G_PERIOD) & ")"
       severity failure;
 end entity;
 
@@ -51,7 +56,7 @@ begin
    reset_policy : if G_START_ON_RESET = true generate
 
       process (clk_i) is
-         variable counter : natural range 0 to G_PERIOD - 1;
+         variable counter : natural range 0 to G_PERIOD - 1 := G_INIT_COUNTER_VALUE;
       begin
          if rising_edge(clk_i) then
             if clk_en_i = '1' then
@@ -81,7 +86,7 @@ begin
    else generate
 
       process (clk_i) is
-         variable counter : natural range 0 to G_PERIOD;
+         variable counter : natural range 0 to G_PERIOD := G_INIT_COUNTER_VALUE;
       begin
          if rising_edge(clk_i) then
             if clk_en_i = '1' then

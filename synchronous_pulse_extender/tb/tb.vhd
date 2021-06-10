@@ -13,8 +13,8 @@ architecture test of tb is
    constant C_CLK_PERIOD : time := 10 ns;
    signal clk : std_logic := '0';
 
-   constant C_WIDTH  : positive := 1;
-   constant C_EXTEND : positive := 3;
+   constant C_WIDTH        : positive := 1;
+   constant C_EXTEND_VALUE : positive := 3;
 
    signal en : std_logic := '1';
    signal d : std_logic := '0';
@@ -26,8 +26,8 @@ begin
 
    DUT : entity simple.Synchronous_Pulse_Extender
    generic map (
-      G_WIDTH  => C_WIDTH,
-      G_EXTEND => C_EXTEND
+      G_WIDTH        => C_WIDTH,
+      G_EXTEND_VALUE => C_EXTEND_VALUE
    )
    port map (
       clk_i        => clk,
@@ -44,7 +44,7 @@ begin
       wait for C_CLK_PERIOD;
       d <= '0';
 
-      for i in C_EXTEND downto 0 loop
+      for i in C_EXTEND_VALUE downto 0 loop
          assert q = '1' report "q asserted for too short" severity failure;
          wait for C_CLK_PERIOD;
       end loop;
@@ -66,7 +66,7 @@ begin
       wait for C_CLK_PERIOD;
       assert q = '1' report "q should be asserted" severity failure;
       d <= '0';
-      for i in C_EXTEND - 1 downto 0 loop
+      for i in C_EXTEND_VALUE - 1 downto 0 loop
          wait for C_CLK_PERIOD;
          assert q = '1' report "q should be asserted" severity failure;
       end loop;

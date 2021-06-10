@@ -1,10 +1,10 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- Synchronous_Pulse_Extender extends a pulse by G_EXTEND clock ticks.
+-- Synchronous_Pulse_Extender extends a pulse by G_EXTEND_VALUE clock ticks.
 --
 -- If there are 2 consecutive pulses, and the gap between them is less than
--- or equal to G_EXTEND, then the gap will not be seen on the output.
+-- or equal to G_EXTEND_VALUE, then the gap will not be seen on the output.
 -- This can be used as a filtering functionality.
 -- Example:
 --         _   _   _   _   _   _   _   _   _   _   _
@@ -16,7 +16,7 @@ library ieee;
 entity Synchronous_Pulse_Extender is
    generic (
       G_WIDTH            : positive;
-      G_EXTEND           : positive;
+      G_EXTEND_VALUE     : positive;
       G_INIT_VALUE       : std_logic := '0';
       G_REGISTER_OUTPUTS : boolean := true
    );
@@ -32,7 +32,7 @@ end entity;
 
 architecture rtl of Synchronous_Pulse_Extender is
 
-   subtype t_counter is natural range 0 to G_EXTEND - 1;
+   subtype t_counter is natural range 0 to G_EXTEND_VALUE - 1;
    type t_counter_vector is array (natural range <>) of t_counter;
    signal counters : t_counter_vector(G_WIDTH - 1 downto 0) := (others => 0);
 
@@ -59,7 +59,7 @@ begin
 
                if en_mask_i(i) = '1' and prev_d(i) = '0' and d_i(i) = '1' then
                   q(i) <= '1';
-                  counters(i) <= G_EXTEND - 1;
+                  counters(i) <= G_EXTEND_VALUE - 1;
                end if;
             end loop;
          end if;

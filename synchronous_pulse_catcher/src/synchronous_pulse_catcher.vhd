@@ -20,13 +20,15 @@ entity Synchronous_Pulse_Catcher is
       G_REGISTER_OUTPUTS : boolean := true
    );
    port (
-      clk_i        : in  std_logic;
-      d_i          : in  std_logic_vector(G_WIDTH - 1 downto 0);
-      clear_mask_i : in  std_logic_vector(G_WIDTH - 1 downto 0);
-      clear_stb_i  : in  std_logic;
-      catch_mask_i : in  std_logic_vector(G_WIDTH - 1 downto 0) := (others => '1');
-      q_mask_i     : in  std_logic_vector(G_WIDTH - 1 downto 0) := (others => '1');
-      q_o          : out std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE)
+      clk_i              : in  std_logic;
+      d_i                : in  std_logic_vector(G_WIDTH - 1 downto 0);
+      clear_mask_i       : in  std_logic_vector(G_WIDTH - 1 downto 0);
+      clear_stb_i        : in  std_logic;
+      catch_mask_i       : in  std_logic_vector(G_WIDTH - 1 downto 0) := (others => '1');
+      q_mask_i           : in  std_logic_vector(G_WIDTH - 1 downto 0) := (others => '1');
+      q_or_reduce_mask_i : in  std_logic_vector(G_WIDTH - 1 downto 0) := (others => '1');
+      q_o                : out std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
+      q_or_reduced_o     : out std_logic := G_INIT_VALUE
    );
 end entity;
 
@@ -63,12 +65,14 @@ begin
       begin
          if rising_edge(clk_i) then
             q_o <= q and q_mask_i;
+            q_or_reduced_o <= or(q and q_or_reduce_mask_i);
          end if;
       end process;
 
    else generate
 
       q_o <= q and q_mask_i;
+      q_or_reduced_o <= or(q and q_or_reduce_mask_i);
 
    end generate;
 

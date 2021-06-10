@@ -43,6 +43,7 @@ Some entities share some port names, which always indicate the same functionalit
 - **d_i** - data input,
 - **clk_i** - clock input,
 - **clk_en_i** - clock enable input,
+- **en_i** - functionality enable input,
 - **q_o** - data output,
 - **rst_i** - reset input,
 - **stb_i** - strobe input,

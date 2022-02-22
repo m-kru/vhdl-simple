@@ -1,4 +1,4 @@
-# vhdl\_simple
+# vhdl-simple
 Library for simple VHDL entities.
 
 ## Introduction

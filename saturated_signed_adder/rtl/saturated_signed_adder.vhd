@@ -1,36 +1,20 @@
---------------------------------------------------------------------------------
--- vhdl_simple library
--- https://github.com/m-kru/vhdl_simple
---------------------------------------------------------------------------------
---
--- Entity: Saturated signed adder with parameterizable widths and limits.
---
--- Description:
---  Simple signed adder for saturated math (without overflowing). For example,
---  in case of 8-bits signed numbers the result of 127 + 1 = 127, not -128.
---  It has parameterizable width of inputs and output. In case when
---  G_MAX_VALUE = 0 and G_MIN_VALUE = 0, the maximum and minimum limits are
---  established based on the result width.
---
---------------------------------------------------------------------------------
--- Copyright (c) 2019 Michal Kruszewski
---------------------------------------------------------------------------------
--- MIT License
---------------------------------------------------------------------------------
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---------------------------------------------------------------------------------
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
+-- Copyright (c) 2019 Michał Kruszewski
 
 library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
-entity saturated_signed_adder is
+
+-- Saturated signed adder with parameterizable widths and limits.
+--
+-- Simple signed adder for saturated math (without overflowing). For example,
+-- in case of 8-bits signed numbers the result of 127 + 1 = 127, not -128.
+-- It has parameterizable width of inputs and output. In case when
+-- G_MAX_VALUE = 0 and G_MIN_VALUE = 0, the maximum and minimum limits are
+-- established based on the result width.
+entity Saturated_Signed_Adder is
   generic (
     G_A_WIDTH          : positive;
     G_B_WIDTH          : positive;
@@ -49,6 +33,7 @@ entity saturated_signed_adder is
   );
 
 begin
+
   assert G_REGISTER_OUTPUTS = false or clk_i /= '-'
     report "clk_i port not mapped to any signal"
     severity failure;
@@ -64,9 +49,11 @@ begin
   assert (G_MIN_VALUE >= (- 1) * (2 ** (G_RESULT_WIDTH - 1))) or (G_MAX_VALUE = 0 and G_MIN_VALUE = 0)
     report "G_MIN_VALUE (" & integer'image(G_MIN_VALUE) & ") is lesser than the minimum value for given G_RESULT_WIDTH (" & integer'image(G_RESULT_WIDTH) & ")"
     severity failure;
-end entity saturated_signed_adder;
 
-architecture rtl of saturated_signed_adder is
+end entity;
+
+
+architecture rtl of Saturated_Signed_Adder is
 
   function set_max_constant (
     result_width : positive;
@@ -150,4 +137,4 @@ begin
 
   end generate register_outputs;
 
-end architecture rtl;
+end architecture;

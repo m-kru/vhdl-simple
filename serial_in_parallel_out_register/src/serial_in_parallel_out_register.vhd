@@ -1,33 +1,16 @@
---------------------------------------------------------------------------------
--- vhdl_simple library
--- https://github.com/m-kru/vhdl_simple
---------------------------------------------------------------------------------
---
--- Entity: Serial-In Parallel-Out (SIPO) register.
---
--- Description:
---  SIPO register which can be configured to work with or without output
---  register. When G_REGISTER_OUTPUTS is set to false, the stb_i input can
---  be left unconnected.
---
---------------------------------------------------------------------------------
--- Copyright (c) 2020 Michal Kruszewski
---------------------------------------------------------------------------------
--- MIT License
---------------------------------------------------------------------------------
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---------------------------------------------------------------------------------
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
+-- Copyright (c) 2020 Michał Kruszewski
 
 library ieee;
   use ieee.std_logic_1164.all;
 
-entity serial_in_parallel_out_register is
+-- Serial-In Parallel-Out (SIPO) register.
+--
+-- SIPO register which can be configured to work with or without output
+-- register. When G_REGISTER_OUTPUTS is set to false, the stb_i input can
+-- be left unconnected.
+entity Serial_In_Parallel_Out_Register is
   generic (
     G_OUTPUT_WIDTH     : positive;
     G_INIT_VALUE       : std_logic := '0';
@@ -46,7 +29,7 @@ entity serial_in_parallel_out_register is
 
 end entity;
 
-architecture rtl of serial_in_parallel_out_register is
+architecture rtl of Serial_In_Parallel_Out_Register is
 
   signal q_internal : std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
   signal q_output   : std_logic_vector(G_OUTPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
@@ -96,4 +79,4 @@ begin
 
   end generate register_outputs;
 
-end architecture rtl;
+end architecture;

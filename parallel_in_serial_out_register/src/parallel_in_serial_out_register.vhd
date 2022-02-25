@@ -1,35 +1,19 @@
---------------------------------------------------------------------------------
--- vhdl_simple library
--- https://github.com/m-kru/vhdl_simple
---------------------------------------------------------------------------------
---
--- Entity: Parallel-In Serial-Out (PISO) register.
---
--- Description:
---  PISO register with configurable shift direction. If G_LSB_FIRST is set to
---  true then Least Significant Bit (LSB) will appear at the output as the first
---  one. If G_LSB_FIRST is set to false then Most Significant Bit (MSB) will
---  appear at the output as the first one. Width of the output is also
---  configurable, but it must be less than or equal to parallel input width.
---
---------------------------------------------------------------------------------
--- Copyright (c) 2020 Michal Kruszewski
---------------------------------------------------------------------------------
--- MIT License
---------------------------------------------------------------------------------
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---------------------------------------------------------------------------------
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
+-- Copyright (c) 2020 Michał Kruszewski
 
 library ieee;
   use ieee.std_logic_1164.all;
 
-entity parallel_in_serial_out_register is
+
+-- Parallel-In Serial-Out (PISO) register with configurable shift direction.
+--
+-- If G_LSB_FIRST is set to true then Least Significant Bit (LSB)
+-- will appear at the output as the first one.
+-- If G_LSB_FIRST is set to false then Most Significant Bit (MSB) will
+-- appear at the output as the first one. Width of the output is also
+-- configurable, but it must be less than or equal to parallel input width.
+entity Parallel_In_Serial_Out_Register is
   generic (
     G_INPUT_WIDTH  : positive;
     G_OUTPUT_WIDTH : positive;
@@ -54,7 +38,8 @@ begin
 
 end entity;
 
-architecture rtl of parallel_in_serial_out_register is
+
+architecture rtl of Parallel_In_Serial_Out_Register is
 
   signal internal_reg : std_logic_vector(G_INPUT_WIDTH - 1 downto 0) := (others => G_INIT_VALUE);
 
@@ -102,4 +87,4 @@ begin
 
   end generate shift_direction;
 
-end architecture rtl;
+end architecture;

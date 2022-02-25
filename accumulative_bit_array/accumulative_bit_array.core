@@ -3,13 +3,13 @@ CAPI=2:
 name: :vhdl_simple:accumulative_bit_array
 
 filesets:
-  rtl:
+  src:
     files:
-      - rtl/accumulative_bit_array.vhd
+      - src/accumulative_bit_array.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
 targets:
   default:
     filesets:
-      - rtl
+      - src

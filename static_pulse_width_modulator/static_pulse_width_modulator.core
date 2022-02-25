@@ -3,7 +3,7 @@ CAPI=2:
 name: :vhdl_simple:static_pulse_width_modulator
 
 filesets:
-  rtl:
+  src:
     files:
       - src/static_pulse_width_modulator.vhd
     file_type: vhdlSource-2008
@@ -22,18 +22,18 @@ filesets:
 targets:
   default:
     filesets:
-      - rtl
+      - src
 
   tb:
     default_tool: ghdl
     toplevel: tb
     filesets:
-      - rtl
+      - src
       - tb
 
   tb_start_after_reset:
     default_tool: ghdl
     toplevel: tb_start_after_reset
     filesets:
-      - rtl
+      - src
       - tb_start_after_reset

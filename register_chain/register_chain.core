@@ -3,7 +3,7 @@ CAPI=2:
 name: :vhdl_simple:register_chain
 
 filesets:
-  rtl:
+  src:
     files:
       - src/register_chain.vhd
     file_type: vhdlSource-2008
@@ -17,11 +17,11 @@ filesets:
 targets:
   default:
     filesets:
-      - rtl
+      - src
 
   tb:
     default_tool: ghdl
     toplevel: tb
     filesets:
-      - rtl
+      - src
       - tb

@@ -3,9 +3,9 @@ CAPI=2:
 name: :vhdl_simple:parallel_in_serial_out_register
 
 filesets:
-  rtl:
+  src:
     files:
-      - rtl/parallel_in_serial_out_register.vhd
+      - src/parallel_in_serial_out_register.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -22,18 +22,18 @@ filesets:
 targets:
   default:
     filesets:
-      - rtl
+      - src
 
   tb_default_generics:
     default_tool: ghdl
     toplevel: tb_default_generics
     filesets:
-      - rtl
+      - src
       - tb_default_generics
 
   tb_msb_first:
     default_tool: ghdl
     toplevel: tb_msb_first
     filesets:
-      - rtl
+      - src
       - tb_msb_first

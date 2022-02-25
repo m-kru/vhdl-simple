@@ -3,9 +3,9 @@ CAPI=2:
 name: :vhdl_simple:reset_synchronizer
 
 filesets:
-  rtl:
+  src:
     files:
-      - rtl/reset_synchronizer.vhd
+      - src/reset_synchronizer.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -19,4 +19,4 @@ filesets:
 
 targets:
   default:
-    filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]
+    filesets: [src, "tool_vivado? (vivado_constr)", tcl]

@@ -3,9 +3,9 @@ CAPI=2:
 name: :vhdl_simple:saturated_unsigned_adder
 
 filesets:
-  rtl:
+  src:
     files:
-      - rtl/saturated_unsigned_adder.vhd
+      - src/saturated_unsigned_adder.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -27,25 +27,25 @@ filesets:
 targets:
   default:
     filesets:
-      - rtl
+      - src
 
   tb_default_generics:
     default_tool: ghdl
     toplevel: tb_default_generics
     filesets:
-      - rtl
+      - src
       - tb_default_generics
 
   tb_comb:
     default_tool: ghdl
     toplevel: tb_comb
     filesets:
-      - rtl
+      - src
       - tb_comb
 
   tb_different_widths:
     default_tool: ghdl
     toplevel: tb_different_widths
     filesets:
-      - rtl
+      - src
       - tb_different_widths

@@ -3,9 +3,9 @@ CAPI=2:
 name: :vhdl_simple:false_path_synchronization_register
 
 filesets:
-  rtl:
+  src:
     files:
-      - rtl/false_path_synchronization_register.vhd
+      - src/false_path_synchronization_register.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -19,4 +19,4 @@ filesets:
 
 targets:
   default:
-    filesets: [rtl, "tool_vivado? (vivado_constr)", tcl]
+    filesets: [src, "tool_vivado? (vivado_constr)", tcl]

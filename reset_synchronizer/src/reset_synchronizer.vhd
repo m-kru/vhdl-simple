@@ -1,36 +1,18 @@
---------------------------------------------------------------------------------
--- vhdl_simple library
--- https://github.com/m-kru/vhdl_simple
---------------------------------------------------------------------------------
---
--- Entity: Reset synchronizer
---
--- Description:
---   Standard reset synchroniser. It follows typical and recommended
---   "asynchronous assertion -> synchronous deassertion" practice.
---   Can be used to drive both synchronous and asynchronous FFs.
---   Will assert reset even without active clock signal.
---   Needs two clock cycles to deassert reset.
---   This circuit guarantess zero metastability problems.
---
---------------------------------------------------------------------------------
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
 -- Copyright (c) 2018 Adrian Byszuk <adrian.byszuk@gmail.com>
---------------------------------------------------------------------------------
--- MIT License
---------------------------------------------------------------------------------
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---------------------------------------------------------------------------------
 
 library ieee;
-use ieee.std_logic_1164.all;
+   use ieee.std_logic_1164.all;
 
-entity reset_synchronizer is
+-- Reset synchronizer is a standard reset synchroniser.
+-- It follows typical and recommended
+-- "asynchronous assertion -> synchronous deassertion" practice.
+-- Can be used to drive both synchronous and asynchronous FFs.
+-- Will assert reset even without active clock signal.
+-- Needs two clock cycles to deassert reset.
+-- This circuit guarantess zero metastability problems.
+entity Reset_Synchronizer is
   generic (
     G_INPUT_POSITIVE  : boolean := true; -- TRUE for positive polarity
     G_OUTPUT_POSITIVE : boolean := true
@@ -41,9 +23,9 @@ entity reset_synchronizer is
     rst_o : out std_logic
   );
 
-end entity reset_synchronizer;
+end entity;
 
-architecture rtl of reset_synchronizer is
+architecture rtl of Reset_Synchronizer is
 
   attribute dont_touch : string;
 
@@ -51,7 +33,7 @@ architecture rtl of reset_synchronizer is
   attribute dont_touch of rst_ff1 : signal is "true";
   attribute dont_touch of rst_ff2 : signal is "true";
 
-begin  -- architecture beh
+begin
 
   -- vsg_off concurrent_007
   rst_in_p <= rst_i when G_INPUT_POSITIVE else not(rst_i);
@@ -71,4 +53,4 @@ begin  -- architecture beh
     end if;
   end process sync;
 
-end architecture rtl;
+end architecture;

@@ -1,5 +1,5 @@
 -- SPDX-License-Identifier: MIT
--- https://github.com/m-kru/vhdl_simple
+-- https://github.com/m-kru/vhdl-simple
 -- Copyright (c) 2021 Michał Kruszewski
 
 library ieee;
@@ -11,7 +11,7 @@ library ieee;
 library types;
    use types.types.all;
 
--- multiplexer is a generic multiplexer.
+-- Multiplexer is a generic multiplexer.
 --
 -- G_OVERRANGE_POLICY defines what should be set to the output_o when number of inputs
 -- is not a power of 2. Available policies are 'first', 'last', 'value'.
@@ -22,7 +22,7 @@ library types;
 -- Setting G_OVERRANGE_POLICY to 'first' or 'last' _probably_ does not increase the
 -- resource utilization. Although, it has been tested only with Vivado 2020.1
 -- and default synthesis settings.
-entity multiplexer is
+entity Multiplexer is
    generic (
       G_INPUTS : positive;
       G_WIDTH  : positive;
@@ -44,7 +44,7 @@ begin
       severity failure;
 end entity;
 
-architecture rtl of multiplexer is
+architecture rtl of Multiplexer is
 
    signal output : std_logic_vector(G_WIDTH - 1 downto 0);
 

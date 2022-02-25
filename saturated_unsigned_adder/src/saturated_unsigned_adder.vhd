@@ -1,51 +1,34 @@
---------------------------------------------------------------------------------
--- vhdl_simple library
--- https://github.com/m-kru/vhdl_simple
---------------------------------------------------------------------------------
---
--- Entity: Saturated unsigned adder with parameterizable widths and limits.
---
--- Description:
---  Simple unsigned adder for saturated math (without overflowing). For example,
---  in case of 8-bits unsigned numbers the result of 250 + 7 = 255, not 1.
---  It has parameterizable width of inputs and output. In case when
---  G_MAX_VALUE = 0 and G_MIN_VALUE = 0, the maximum and minimum limits are
---  established based on the result width.
---
---------------------------------------------------------------------------------
--- Copyright (c) 2019 Michal Kruszewski
---------------------------------------------------------------------------------
--- MIT License
---------------------------------------------------------------------------------
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---------------------------------------------------------------------------------
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
+-- Copyright (c) 2019 Michał Kruszewski
 
 library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
-entity saturated_unsigned_adder is
+-- Saturated unsigned adder with parameterizable widths and limits.
+--
+-- Simple unsigned adder for saturated math (without overflowing). For example,
+-- in case of 8-bits unsigned numbers the result of 250 + 7 = 255, not 1.
+-- It has parameterizable width of inputs and output. In case when
+-- G_MAX_VALUE = 0 and G_MIN_VALUE = 0, the maximum and minimum limits are
+-- established based on the result width.
+entity Saturated_Unsigned_Adder is
   generic (
     G_A_WIDTH          : positive;
     G_B_WIDTH          : positive;
     G_RESULT_WIDTH     : positive;
-    G_MAX_VALUE        : natural  := 0;
-    G_MIN_VALUE        : natural  := 0;
-    G_REGISTER_OUTPUTS : boolean  := true
+    G_MAX_VALUE        : natural := 0;
+    G_MIN_VALUE        : natural := 0;
+    G_REGISTER_OUTPUTS : boolean := true
   );
   port (
-    clk_i       : in    std_logic := '-';
-    a_i         : in    unsigned(G_A_WIDTH - 1 downto 0);
-    b_i         : in    unsigned(G_B_WIDTH - 1 downto 0);
-    result_o    : out   unsigned(G_RESULT_WIDTH - 1 downto 0);
-    overflow_o  : out   std_logic;
-    underflow_o : out   std_logic
+    clk_i       : in  std_logic := '-';
+    a_i         : in  unsigned(G_A_WIDTH - 1 downto 0);
+    b_i         : in  unsigned(G_B_WIDTH - 1 downto 0);
+    result_o    : out unsigned(G_RESULT_WIDTH - 1 downto 0);
+    overflow_o  : out std_logic;
+    underflow_o : out std_logic
   );
 
 begin
@@ -60,9 +43,10 @@ begin
   assert (G_MAX_VALUE < 2 ** G_RESULT_WIDTH) or (G_MAX_VALUE = 0 and G_MIN_VALUE = 0)
     report "G_MAX_VALUE (" & integer'image(G_MAX_VALUE) & ") is grater than the maximum value for given G_RESULT_WIDTH (" & integer'image(G_RESULT_WIDTH) & ")"
     severity failure;
-end entity saturated_unsigned_adder;
+end entity;
 
-architecture rtl of saturated_unsigned_adder is
+
+architecture rtl of Saturated_Unsigned_Adder is
 
   function set_max_constant (
     result_width : positive;
@@ -110,7 +94,7 @@ begin
   end process sum;
 
   register_outputs : if G_REGISTER_OUTPUTS generate
-  
+
     sync_outputs : process (clk_i) is
     begin
 
@@ -121,13 +105,13 @@ begin
       end if;
 
     end process sync_outputs;
-  
+
   else generate
-  
+
     result_o    <= s_result;
     overflow_o  <= s_overflow;
     underflow_o <= s_underflow;
-  
+
   end generate register_outputs;
 
-end architecture rtl;
+end architecture;

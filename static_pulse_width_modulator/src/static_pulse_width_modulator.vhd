@@ -50,6 +50,7 @@ begin
       severity failure;
 end entity;
 
+
 architecture behavioral of static_pulse_width_modulator is
 begin
 

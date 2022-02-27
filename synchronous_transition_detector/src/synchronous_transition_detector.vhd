@@ -5,6 +5,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
+
 entity synchronous_transition_detector is
    generic (
       G_WIDTH : positive;
@@ -20,6 +21,7 @@ entity synchronous_transition_detector is
       one_to_zero_o : out std_logic_vector(G_WIDTH - 1 downto 0)
    );
 end entity;
+
 
 architecture rtl of synchronous_transition_detector is
 

@@ -5,7 +5,6 @@
 library ieee;
   use ieee.std_logic_1164.all;
 
-
 -- Parallel-In Serial-Out (PISO) register with configurable shift direction.
 --
 -- If G_LSB_FIRST is set to true then Least Significant Bit (LSB)

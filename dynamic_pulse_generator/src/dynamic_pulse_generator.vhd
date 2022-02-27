@@ -8,7 +8,6 @@ library ieee;
    use ieee.math_real.ceil;
    use ieee.math_real.log2;
 
-
 -- G_MAX_PULSE_WIDTH is the maximum width of the pulse.
 -- It implies the width of the width_i port.
 entity Dynamic_Pulse_Generator is

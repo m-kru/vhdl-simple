@@ -5,7 +5,6 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
-
 -- False_Path_Synchronization_Register is the Clock Domain Crossing (CDC)
 -- synchronizer with set false path.
 --
@@ -25,10 +24,8 @@ entity False_Path_Synchronization_Register is
   );
 end entity;
 
-
 -- Disable Quartus warning about unrecognized attributes.
 -- altera message_off 10335
-
 
 architecture rtl of False_Path_Synchronization_Register is
   
@@ -50,7 +47,7 @@ architecture rtl of False_Path_Synchronization_Register is
 
 begin
 
-  sync: process(clk_i) is
+  sync : process(clk_i) is
   begin
     if rising_edge(clk_i) then
       s_0 <= d_i;

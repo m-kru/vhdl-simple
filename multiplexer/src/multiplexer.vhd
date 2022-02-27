@@ -44,6 +44,7 @@ begin
       severity failure;
 end entity;
 
+
 architecture rtl of Multiplexer is
 
    signal output : std_logic_vector(G_WIDTH - 1 downto 0);

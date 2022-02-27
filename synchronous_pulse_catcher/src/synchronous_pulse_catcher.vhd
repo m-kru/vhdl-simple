@@ -1,13 +1,13 @@
 -- SPDX-License-Identifier: MIT
 -- https://github.com/m-kru/vhdl-simple
 -- Copyright (c) 2021 Michał Kruszewski
- 
+
 library ieee;
    use ieee.std_logic_1164.all;
 
 -- Synchronous_Pulse_Catcher can be used to monitor signals and record
 -- that there have been any pulses.
--- 
+--
 -- Clearing has higher priority than catching the pulse.
 -- This is because the main goal of the Synchronous_Pulse_Catcher is to monitor signals
 -- and record that there has been a pulse, not to count the number of pulses.

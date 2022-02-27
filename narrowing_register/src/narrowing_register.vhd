@@ -11,7 +11,7 @@ library ieee;
 -- It is user responsibility to provide d_i and stb_i in proper
 -- clock cycles. 'Proper' means one clock cycle before the number of
 -- valid bits in the internal register is less than G_OUTPUT_WIDTH.
--- 
+--
 -- G_SHIFT_VALUE is the value shifted when the d_i data is not provided.
 entity Narrowing_Register is
    generic (

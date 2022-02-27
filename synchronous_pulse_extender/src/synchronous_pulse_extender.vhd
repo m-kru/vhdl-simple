@@ -1,3 +1,7 @@
+-- SPDX-License-Identifier: MIT
+-- https://github.com/m-kru/vhdl-simple
+-- Copyright (c) 2021 Michał Kruszewski
+
 library ieee;
    use ieee.std_logic_1164.all;
 

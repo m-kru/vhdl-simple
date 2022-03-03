@@ -26,9 +26,9 @@ begin
 
    DUT : entity simple.static_pulse_width_modulator
    generic map (
-      G_PERIOD         => C_PERIOD,
-      G_DUTY           => C_DUTY,
-      G_START_ON_RESET => false
+      PERIOD         => C_PERIOD,
+      DUTY           => C_DUTY,
+      START_ON_RESET => false
    )
    port map (
       clk_i => clk,

@@ -13,65 +13,65 @@ library types;
 
 -- Multiplexer is a generic multiplexer.
 --
--- G_OVERRANGE_POLICY defines what should be set to the output_o when number of inputs
+-- OVERRANGE_POLICY defines what should be set to the output_o when number of inputs
 -- is not a power of 2. Available policies are 'first', 'last', 'value'.
--- If 'value' is choosen, then output_o <= (others => G_OVERRANGE_VALUE).
+-- If 'value' is choosen, then output_o <= (others => OVERRANGE_VALUE).
 -- The default policy is ...
--- Setting G_OVERRANGE_POLICY to 'value' and G_OVERRANGE_VALUE to '0' or '1' results
+-- Setting OVERRANGE_POLICY to 'value' and OVERRANGE_VALUE to '0' or '1' results
 -- with a greater resource utilization.
--- Setting G_OVERRANGE_POLICY to 'first' or 'last' _probably_ does not increase the
+-- Setting OVERRANGE_POLICY to 'first' or 'last' _probably_ does not increase the
 -- resource utilization. Although, it has been tested only with Vivado 2020.1
 -- and default synthesis settings.
 entity Multiplexer is
    generic (
-      G_INPUTS : positive;
-      G_WIDTH  : positive;
-      G_REGISTER_OUTPUTS : boolean   := true;
-      G_OVERRANGE_POLICY : string    := "value"; -- last, first or value
-      G_OVERRANGE_VALUE  : std_logic := '-'
+      INPUTS : positive;
+      WIDTH  : positive;
+      REGISTER_OUTPUTS : boolean   := true;
+      OVERRANGE_POLICY : string    := "value"; -- last, first or value
+      OVERRANGE_VALUE  : std_logic := '-'
    );
    port (
       clk_i    : in  std_logic := '-';
-      addr_i   : in  std_logic_vector(integer(ceil(log2(real(G_INPUTS)))) - 1 downto 0);
-      inputs_i : in  slv_vector(G_INPUTS - 1 downto 0)(G_WIDTH - 1 downto 0);
-      output_o : out std_logic_vector(G_WIDTH - 1 downto 0)
+      addr_i   : in  std_logic_vector(integer(ceil(log2(real(INPUTS)))) - 1 downto 0);
+      inputs_i : in  slv_vector(INPUTS - 1 downto 0)(WIDTH - 1 downto 0);
+      output_o : out std_logic_vector(WIDTH - 1 downto 0)
    );
 begin
-   assert G_REGISTER_OUTPUTS = false or clk_i /= '-' report "clk_i port not mapped to any signal" severity failure;
+   assert REGISTER_OUTPUTS = false or clk_i /= '-' report "clk_i port not mapped to any signal" severity failure;
 
-   assert G_OVERRANGE_POLICY = "first" or G_OVERRANGE_POLICY = "last" or G_OVERRANGE_POLICY = "value"
-      report "Wrong G_OVERRANGE_POLICY, available policies: 'first', 'last' and 'value'."
+   assert OVERRANGE_POLICY = "first" or OVERRANGE_POLICY = "last" or OVERRANGE_POLICY = "value"
+      report "Wrong OVERRANGE_POLICY, available policies: 'first', 'last' and 'value'."
       severity failure;
 end entity;
 
 
 architecture rtl of Multiplexer is
 
-   signal output : std_logic_vector(G_WIDTH - 1 downto 0);
+   signal output : std_logic_vector(WIDTH - 1 downto 0);
 
 begin
 
-   overrange_policy : if G_OVERRANGE_POLICY = "first" generate
+   policy : if OVERRANGE_POLICY = "first" generate
 
       process (all) is
          variable addr : natural;
       begin
          addr := to_integer(unsigned(addr_i));
-         if addr > G_INPUTS - 1 then
+         if addr > INPUTS - 1 then
             output <= inputs_i(0);
          else
             output <= inputs_i(addr);
          end if;
       end process;
 
-   elsif G_OVERRANGE_POLICY = "last" generate
+   elsif OVERRANGE_POLICY = "last" generate
 
       process (all) is
          variable addr : natural;
       begin
          addr := to_integer(unsigned(addr_i));
-         if addr > G_INPUTS - 1 then
-            output <= inputs_i(G_INPUTS - 1);
+         if addr > INPUTS - 1 then
+            output <= inputs_i(INPUTS - 1);
          else
             output <= inputs_i(addr);
          end if;
@@ -83,8 +83,8 @@ begin
          variable addr : natural;
       begin
          addr := to_integer(unsigned(addr_i));
-         if addr > G_INPUTS - 1 then
-            output <= (others => G_OVERRANGE_VALUE);
+         if addr > INPUTS - 1 then
+            output <= (others => OVERRANGE_VALUE);
          else
             output <= inputs_i(addr);
          end if;
@@ -92,7 +92,7 @@ begin
    end generate;
 
 
-  register_outputs : if G_REGISTER_OUTPUTS generate
+  output_registers : if REGISTER_OUTPUTS generate
 
     sync_outputs : process (clk_i) is
     begin
@@ -107,6 +107,6 @@ begin
 
     output_o <= output;
 
-  end generate register_outputs;
+  end generate output_registers;
 
 end architecture;

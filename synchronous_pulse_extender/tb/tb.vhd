@@ -26,8 +26,8 @@ begin
 
    DUT : entity simple.Synchronous_Pulse_Extender
    generic map (
-      G_WIDTH        => C_WIDTH,
-      G_EXTEND_VALUE => C_EXTEND_VALUE
+      WIDTH        => C_WIDTH,
+      EXTEND_VALUE => C_EXTEND_VALUE
    )
    port map (
       clk_i        => clk,

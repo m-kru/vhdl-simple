@@ -25,9 +25,9 @@ begin
 
   DUT : entity simple.saturated_signed_adder
   generic map (
-    G_A_WIDTH => 8,
-    G_B_WIDTH => 8,
-    G_RESULT_WIDTH => 8
+    A_WIDTH => 8,
+    B_WIDTH => 8,
+    RESULT_WIDTH => 8
   )
   port map (
     clk_i  => s_clk,

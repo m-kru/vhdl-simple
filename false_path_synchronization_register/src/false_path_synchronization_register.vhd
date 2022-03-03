@@ -14,13 +14,13 @@ library ieee;
 -- loosens the constraints for Place & Route algorithms.
 entity False_Path_Synchronization_Register is
   generic (
-    G_WIDTH      : positive;
-    G_INIT_VALUE : std_logic := '0'
+    WIDTH      : positive;
+    INIT_VALUE : std_logic := '0'
   );
   port (
     clk_i : in  std_logic;
-    d_i   : in  std_logic_vector(G_WIDTH-1 downto 0);
-    q_o   : out std_logic_vector(G_WIDTH-1 downto 0)
+    d_i   : in  std_logic_vector(WIDTH-1 downto 0);
+    q_o   : out std_logic_vector(WIDTH-1 downto 0)
   );
 end entity;
 
@@ -29,7 +29,7 @@ end entity;
 
 architecture rtl of False_Path_Synchronization_Register is
   
-  signal s_0, s_1 : std_logic_vector(G_WIDTH-1 downto 0) := (others => G_INIT_VALUE);
+  signal s_0, s_1 : std_logic_vector(WIDTH-1 downto 0) := (others => INIT_VALUE);
 
   -- Define all attributes even the ones that imply from the async_reg.
   -- To be compatible with older EDA tools.

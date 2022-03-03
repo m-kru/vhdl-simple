@@ -11,37 +11,37 @@ library ieee;
 -- Simple unsigned adder for saturated math (without overflowing). For example,
 -- in case of 8-bits unsigned numbers the result of 250 + 7 = 255, not 1.
 -- It has parameterizable width of inputs and output. In case when
--- G_MAX_VALUE = 0 and G_MIN_VALUE = 0, the maximum and minimum limits are
+-- MAX_VALUE = 0 and MIN_VALUE = 0, the maximum and minimum limits are
 -- established based on the result width.
 entity Saturated_Unsigned_Adder is
   generic (
-    G_A_WIDTH          : positive;
-    G_B_WIDTH          : positive;
-    G_RESULT_WIDTH     : positive;
-    G_MAX_VALUE        : natural := 0;
-    G_MIN_VALUE        : natural := 0;
-    G_REGISTER_OUTPUTS : boolean := true
+    A_WIDTH          : positive;
+    B_WIDTH          : positive;
+    RESULT_WIDTH     : positive;
+    MAX_VALUE        : natural := 0;
+    MIN_VALUE        : natural := 0;
+    REGISTER_OUTPUTS : boolean := true
   );
   port (
     clk_i       : in  std_logic := '-';
-    a_i         : in  unsigned(G_A_WIDTH - 1 downto 0);
-    b_i         : in  unsigned(G_B_WIDTH - 1 downto 0);
-    result_o    : out unsigned(G_RESULT_WIDTH - 1 downto 0);
+    a_i         : in  unsigned(A_WIDTH - 1 downto 0);
+    b_i         : in  unsigned(B_WIDTH - 1 downto 0);
+    result_o    : out unsigned(RESULT_WIDTH - 1 downto 0);
     overflow_o  : out std_logic;
     underflow_o : out std_logic
   );
 
 begin
-  assert G_REGISTER_OUTPUTS = false or clk_i /= '-'
+  assert REGISTER_OUTPUTS = false or clk_i /= '-'
     report "clk_i port not mapped to any signal"
     severity failure;
 
-  assert (G_MAX_VALUE > G_MIN_VALUE) or (G_MAX_VALUE = 0 and G_MIN_VALUE = 0)
-    report "G_MAX_VALUE (" & integer'image(G_MAX_VALUE) & ") must be greater than G_MIN_VALUE (" & integer'image(G_MIN_VALUE) & ")"
+  assert (MAX_VALUE > MIN_VALUE) or (MAX_VALUE = 0 and MIN_VALUE = 0)
+    report "MAX_VALUE (" & integer'image(MAX_VALUE) & ") must be greater than MIN_VALUE (" & integer'image(MIN_VALUE) & ")"
     severity failure;
 
-  assert (G_MAX_VALUE < 2 ** G_RESULT_WIDTH) or (G_MAX_VALUE = 0 and G_MIN_VALUE = 0)
-    report "G_MAX_VALUE (" & integer'image(G_MAX_VALUE) & ") is grater than the maximum value for given G_RESULT_WIDTH (" & integer'image(G_RESULT_WIDTH) & ")"
+  assert (MAX_VALUE < 2 ** RESULT_WIDTH) or (MAX_VALUE = 0 and MIN_VALUE = 0)
+    report "MAX_VALUE (" & integer'image(MAX_VALUE) & ") is grater than the maximum value for given RESULT_WIDTH (" & integer'image(RESULT_WIDTH) & ")"
     severity failure;
 end entity;
 
@@ -54,19 +54,19 @@ architecture rtl of Saturated_Unsigned_Adder is
   begin
 
     if max_value = 0 then
-      return to_unsigned((2 ** G_RESULT_WIDTH) - 1, G_RESULT_WIDTH);
+      return to_unsigned((2 ** RESULT_WIDTH) - 1, RESULT_WIDTH);
     else
-      return to_unsigned(max_value, G_RESULT_WIDTH);
+      return to_unsigned(max_value, RESULT_WIDTH);
     end if;
 
   end set_max_constant;
 
-  constant C_MAX_VALUE : unsigned(G_RESULT_WIDTH - 1 downto 0) := set_max_constant(G_RESULT_WIDTH, G_MAX_VALUE);
-  constant C_MIN_VALUE : unsigned(G_RESULT_WIDTH - 1 downto 0) := to_unsigned(G_MIN_VALUE, G_RESULT_WIDTH);
+  constant C_MAX_VALUE : unsigned(RESULT_WIDTH - 1 downto 0) := set_max_constant(RESULT_WIDTH, MAX_VALUE);
+  constant C_MIN_VALUE : unsigned(RESULT_WIDTH - 1 downto 0) := to_unsigned(MIN_VALUE, RESULT_WIDTH);
 
-  signal s_full_result : unsigned(MAXIMUM(G_A_WIDTH, G_B_WIDTH) downto 0);
+  signal s_full_result : unsigned(MAXIMUM(A_WIDTH, B_WIDTH) downto 0);
 
-  signal s_result      : unsigned(G_RESULT_WIDTH - 1 downto 0);
+  signal s_result      : unsigned(RESULT_WIDTH - 1 downto 0);
   signal s_overflow    : std_logic;
   signal s_underflow   : std_logic;
 
@@ -93,7 +93,7 @@ begin
 
   end process sum;
 
-  register_outputs : if G_REGISTER_OUTPUTS generate
+  output_registers : if REGISTER_OUTPUTS generate
 
     sync_outputs : process (clk_i) is
     begin
@@ -112,6 +112,6 @@ begin
     overflow_o  <= s_overflow;
     underflow_o <= s_underflow;
 
-  end generate register_outputs;
+  end generate output_registers;
 
 end architecture;

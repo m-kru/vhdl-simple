@@ -20,31 +20,38 @@ Thanks to these, version is not needed in FuseSoc VLNV (Vendor:Library:Name:Vers
 ### Entity names
 
 There are no abbreviations in the entity names as these are *nomina propria*.
+Words within entity names start with uppercase letter.
 
 ### Generic names
 
-Generics names start with **G_**.
+All entities share generics naming convention.
+{FOO} indicates name of the output port or internal signal.
 
-Some entities share some generic names, which always indicate the same functionality:
-- **G_DISABLED_VALUE** - value assigned to outputs when module is disabled (default **'0'**),
-- **G_REGISTER_OUTPUTS** - option to register outputs (default **true**),
-- **G_RESET_VALUE** - value for output or internal state on reset (default **'0'**),
-- **G_INIT_VALUE** - initial value for output or internal state (default **'0'**),
-- **G_INPUT_WIDTH** - width of input (**no** default value),
-- **G_OUTPUT_WIDTH** - width of output (**no** default value),
-- **G_WIDTH** - width of input *and* output (**no** default value).
+| Name | Type | Default | Description |
+| :---: | :---: | :---: | :---: |
+| {FOO}_DISABLED_VALUE | port specific | 0 | Value of *foo* output port when module is disabled (`en_i = '0'`). |
+| {FOO}_INIT_VALUE | port/signal specific | 0 | Initial value of *foo* output port or *foo* internal signal. 
+| {FOO}_RESET_VALUE | port/signal specific | 0 | Value of *foo* output port or *foo* internal signal after reset (asynchronous or synchronous). |
+| INPUT_WIDTH | `positive` | - | Width of input. |
+| OUTPUT_WIDTH | `positive` | - | Width of output. |
+| REGISTER_OUTPUTS | `boolean` | `true` | Option to register outputs. |
+| WIDTH | `positive` | - | Width of input *and* output. |
 
 ### Port names
 
 Port names end with suffix indicating theirs direction: **_i**, **_o**.
 
 Some entities share some port names, which always indicate the same functionality:
-- **addr_i** - address input,
-- **d_i** - data input,
-- **clk_i** - clock input,
-- **clk_en_i** - clock enable input,
-- **en_i** - functionality enable input,
-- **q_o** - data output,
-- **rst_i** - reset input,
-- **stb_i** - strobe input,
-- **wr_en_i** - write enable input.
+
+| Name | Type | Default | Description |
+| :---: | :---: | :---: | :---: |
+| addr_i | `std_logic_vector` | - | Address input. |
+| arstn_i | `std_logic` | `'1'` | Asynchronous negative reset input. |
+| d_i | entity specific | - | Data input. |
+| clk_i | `std_logic` | - | Clock inpout. |
+| clk_en_i | `std_logic` | `'1'` | Clock enable input. |
+| en_i | `std_logic` | `'1'` | Functionality enable input. |
+| q_o | entity specific | `Q_INIT_VALUE` | Data output. |
+| rst_i | `std_logic` | `'0'` | Synchronous positive reset input. |
+| stb_i | `std_logic` | - | Strobe input. |
+| wr_en_i | `std_logic` | - | Write enable input. |

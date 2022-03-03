@@ -28,9 +28,9 @@ begin
 
    DUT : entity simple.multiplexer
    generic map (
-      G_INPUTS => 3,
-      G_WIDTH  => C_WIDTH,
-      G_REGISTER_OUTPUTS => true
+      INPUTS => 3,
+      WIDTH  => C_WIDTH,
+      REGISTER_OUTPUTS => true
    )
    port map (
       clk_i       => clk,

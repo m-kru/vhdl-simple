@@ -22,16 +22,16 @@ library ieee;
 -- down_i - '0' for counting up (default), '1' for counting down.
 entity Synchronous_Binary_Counter is
    generic (
-      G_COUNTER_MAX_VALUE   : positive;
-      G_COUNTER_MIN_VALUE   : natural := 0;
-      G_COUNTER_INIT_VALUE  : natural := 0;
-      G_COUNTER_RESET_VALUE : natural := 0;
+      COUNTER_MAX_VALUE   : positive;
+      COUNTER_MIN_VALUE   : natural := 0;
+      COUNTER_INIT_VALUE  : natural := 0;
+      COUNTER_RESET_VALUE : natural := 0;
 
-      G_MIN_INIT_VALUE  : std_logic := '0';
-      G_MIN_RESET_VALUE : std_logic := '0';
+      MIN_INIT_VALUE  : std_logic := '0';
+      MIN_RESET_VALUE : std_logic := '0';
 
-      G_MAX_INIT_VALUE  : std_logic := '0';
-      G_MAX_RESET_VALUE : std_logic := '0'
+      MAX_INIT_VALUE  : std_logic := '0';
+      MAX_RESET_VALUE : std_logic := '0'
    );
    port (
       arstn_i  : in  std_logic := '1';
@@ -39,35 +39,35 @@ entity Synchronous_Binary_Counter is
       clk_i    : in  std_logic;
       en_i     : in  std_logic := '1';
       rst_i    : in  std_logic := '0';
-      d_i      : in  unsigned(integer(ceil(log2(real(G_COUNTER_MAX_VALUE)))) - 1 downto 0);
+      d_i      : in  unsigned(integer(ceil(log2(real(COUNTER_MAX_VALUE)))) - 1 downto 0);
       stb_i    : in  std_logic;
       down_i   : in  std_logic := '0';
-      q_o      : out unsigned(integer(ceil(log2(real(G_COUNTER_MAX_VALUE)))) - 1 downto 0) := to_unsigned(G_COUNTER_INIT_VALUE, integer(ceil(log2(real(G_COUNTER_MAX_VALUE)))));
-      min_o    : out std_logic := G_MIN_INIT_VALUE;
-      max_o    : out std_logic := G_MAX_INIT_VALUE
+      q_o      : out unsigned(integer(ceil(log2(real(COUNTER_MAX_VALUE)))) - 1 downto 0) := to_unsigned(COUNTER_INIT_VALUE, integer(ceil(log2(real(COUNTER_MAX_VALUE)))));
+      min_o    : out std_logic := MIN_INIT_VALUE;
+      max_o    : out std_logic := MAX_INIT_VALUE
    );
 end entity;
 
 
 architecture rtl of Synchronous_Binary_Counter is
 
-   constant WIDTH : positive := integer(ceil(log2(real(G_COUNTER_MAX_VALUE))));
+   constant WIDTH : positive := integer(ceil(log2(real(COUNTER_MAX_VALUE))));
 
-   signal count : unsigned(WIDTH - 1 downto 0) := to_unsigned(G_COUNTER_INIT_VALUE, WIDTH);
+   signal count : unsigned(WIDTH - 1 downto 0) := to_unsigned(COUNTER_INIT_VALUE, WIDTH);
 
 begin
 
    -- psl default clock is rising_edge(clk_i);
    -- psl min: assert always min_o |=> not min_o;
    -- psl max: assert always max_o |=> not max_o;
-   -- psl rst: assert always rst_i |=> min_o = G_MIN_RESET_VALUE and max_o = G_MAX_RESET_VALUE and q_o = G_COUNTER_RESET_VALUE;
+   -- psl rst: assert always rst_i |=> min_o = MIN_RESET_VALUE and max_o = MAX_RESET_VALUE and q_o = COUNTER_RESET_VALUE;
 
    process (arstn_i, clk_i) is
       procedure reset is
       begin
-         count  <= to_unsigned(G_COUNTER_RESET_VALUE, WIDTH);
-         min_o  <= G_MAX_RESET_VALUE;
-         max_o  <= G_MIN_RESET_VALUE;
+         count  <= to_unsigned(COUNTER_RESET_VALUE, WIDTH);
+         min_o  <= MAX_RESET_VALUE;
+         max_o  <= MIN_RESET_VALUE;
       end procedure;
    begin
       if arstn_i = '0' then
@@ -79,24 +79,24 @@ begin
 
             if stb_i = '1' then
                count <= d_i;
-            elsif (count < G_COUNTER_MAX_VALUE) and down_i = '0' then
+            elsif (count < COUNTER_MAX_VALUE) and down_i = '0' then
                count <= count + 1;
-            elsif (count > G_COUNTER_MIN_VALUE) and down_i = '1' then
+            elsif (count > COUNTER_MIN_VALUE) and down_i = '1' then
                count <= count - 1;
             end if;
 
-            if (count = G_COUNTER_MAX_VALUE - 1) and down_i = '0' then
+            if (count = COUNTER_MAX_VALUE - 1) and down_i = '0' then
                if en_i = '1' then
                   max_o <= '1';
                end if;
-               count <= to_unsigned(G_COUNTER_MAX_VALUE, WIDTH);
+               count <= to_unsigned(COUNTER_MAX_VALUE, WIDTH);
             end if;
 
-            if (count = G_COUNTER_MIN_VALUE + 1) and down_i = '1' then
+            if (count = COUNTER_MIN_VALUE + 1) and down_i = '1' then
                if en_i = '1' then
                   min_o <= '1';
                end if;
-               count <= to_unsigned(G_COUNTER_MIN_VALUE, WIDTH);
+               count <= to_unsigned(COUNTER_MIN_VALUE, WIDTH);
             end if;
 
             if rst_i = '1' then

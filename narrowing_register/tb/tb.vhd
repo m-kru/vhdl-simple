@@ -28,8 +28,8 @@ begin
 
    DUT : entity simple.Narrowing_Register
    generic map (
-      G_INPUT_WIDTH  => C_INPUT_WIDTH,
-      G_OUTPUT_WIDTH => C_OUTPUT_WIDTH
+      INPUT_WIDTH  => C_INPUT_WIDTH,
+      OUTPUT_WIDTH => C_OUTPUT_WIDTH
    )
    port map (
       clk_i => clk,

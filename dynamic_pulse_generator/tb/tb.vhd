@@ -32,7 +32,7 @@ begin
 
    DUT : entity simple.Dynamic_Pulse_Generator
    generic map (
-      G_MAX_PULSE_WIDTH => C_MAX_PULSE_WIDTH
+      MAX_PULSE_WIDTH => C_MAX_PULSE_WIDTH
    )
    port map (
       clk_i   => clk,

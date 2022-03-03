@@ -25,8 +25,8 @@ begin
 
    DUT : entity simple.synchronous_transition_detector
    generic map (
-      G_WIDTH => C_WIDTH,
-      G_REGISTER_OUTPUTS => false
+      WIDTH => C_WIDTH,
+      REGISTER_OUTPUTS => false
    )
    port map (
       clk_i         => clk,

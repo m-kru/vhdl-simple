@@ -34,7 +34,7 @@ begin
 
    DUT : entity simple.Synchronous_Pulse_Catcher
    generic map (
-      G_WIDTH => C_WIDTH
+      WIDTH => C_WIDTH
    )
    port map (
       clk_i              => clk,

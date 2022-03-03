@@ -27,8 +27,8 @@ begin
 
    DUT : entity simple.register_chain
    generic map (
-      G_WIDTH  => C_WIDTH,
-      G_STAGES => C_DELAY
+      WIDTH  => C_WIDTH,
+      STAGES => C_DELAY
    )
    port map (
       clk_i => clk,

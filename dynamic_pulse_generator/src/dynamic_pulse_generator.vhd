@@ -8,16 +8,16 @@ library ieee;
    use ieee.math_real.ceil;
    use ieee.math_real.log2;
 
--- G_MAX_PULSE_WIDTH is the maximum width of the pulse.
+-- MAX_PULSE_WIDTH is the maximum width of the pulse.
 -- It implies the width of the width_i port.
 entity Dynamic_Pulse_Generator is
    generic (
-      G_MAX_PULSE_WIDTH : positive
+      MAX_PULSE_WIDTH : positive
    );
    port (
       clk_i    : in  std_logic;
       clk_en_i : in  std_logic := '1';
-      width_i  : in  unsigned(integer(ceil(log2(real(G_MAX_PULSE_WIDTH)))) - 1 downto 0);
+      width_i  : in  unsigned(integer(ceil(log2(real(MAX_PULSE_WIDTH)))) - 1 downto 0);
       stb_i    : in  std_logic;
       q_o      : out std_logic := '0'
    );
@@ -26,7 +26,7 @@ end entity;
 
 architecture rtl of Dynamic_Pulse_Generator is
 
-   signal counter : natural range 0 to (G_MAX_PULSE_WIDTH - 1) := 0;
+   signal counter : natural range 0 to (MAX_PULSE_WIDTH - 1) := 0;
 
 begin
 

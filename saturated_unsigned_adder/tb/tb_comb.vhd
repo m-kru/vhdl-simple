@@ -27,12 +27,12 @@ begin
   
   saturated_unsigned_adder_0 : entity simple.saturated_unsigned_adder
   generic map (
-    G_A_WIDTH => C_WIDTH,
-    G_B_WIDTH => C_WIDTH,
-    G_RESULT_WIDTH => C_WIDTH,
-    G_MAX_VALUE => C_MAX_VALUE,
-    G_MIN_VALUE => C_MIN_VALUE,
-    G_REGISTER_OUTPUTS => false
+    A_WIDTH => C_WIDTH,
+    B_WIDTH => C_WIDTH,
+    RESULT_WIDTH => C_WIDTH,
+    MAX_VALUE => C_MAX_VALUE,
+    MIN_VALUE => C_MIN_VALUE,
+    REGISTER_OUTPUTS => false
   )
   port map (
     a_i    => s_a,

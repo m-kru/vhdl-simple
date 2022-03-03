@@ -8,28 +8,28 @@ library ieee;
 
 entity synchronous_transition_detector is
    generic (
-      G_WIDTH : positive;
-      G_INIT_PREVIOUS : std_logic := '0';
-      G_REGISTER_OUTPUTS : boolean := true
+      WIDTH : positive;
+      INIT_PREVIOUS : std_logic := '0';
+      REGISTER_OUTPUTS : boolean := true
    );
    port (
       clk_i         : in  std_logic;
       clk_en_i      : in  std_logic := '1';
-      d_i           : in  std_logic_vector(G_WIDTH - 1 downto 0);
-      transition_o  : out std_logic_vector(G_WIDTH - 1 downto 0);
-      zero_to_one_o : out std_logic_vector(G_WIDTH - 1 downto 0);
-      one_to_zero_o : out std_logic_vector(G_WIDTH - 1 downto 0)
+      d_i           : in  std_logic_vector(WIDTH - 1 downto 0);
+      transition_o  : out std_logic_vector(WIDTH - 1 downto 0);
+      zero_to_one_o : out std_logic_vector(WIDTH - 1 downto 0);
+      one_to_zero_o : out std_logic_vector(WIDTH - 1 downto 0)
    );
 end entity;
 
 
 architecture rtl of synchronous_transition_detector is
 
-   signal previous_data : std_logic_vector(G_WIDTH - 1 downto 0) := (others => G_INIT_PREVIOUS);
+   signal previous_data : std_logic_vector(WIDTH - 1 downto 0) := (others => INIT_PREVIOUS);
 
-   signal transition  : std_logic_vector(G_WIDTH - 1 downto 0);
-   signal zero_to_one : std_logic_vector(G_WIDTH - 1 downto 0);
-   signal one_to_zero : std_logic_vector(G_WIDTH - 1 downto 0);
+   signal transition  : std_logic_vector(WIDTH - 1 downto 0);
+   signal zero_to_one : std_logic_vector(WIDTH - 1 downto 0);
+   signal one_to_zero : std_logic_vector(WIDTH - 1 downto 0);
 
 begin
 
@@ -63,7 +63,7 @@ begin
    end process;
 
 
-   register_outputs : if G_REGISTER_OUTPUTS generate
+   output_registers : if REGISTER_OUTPUTS generate
 
       process (clk_i) is
       begin

@@ -28,11 +28,11 @@ begin
 
   saturated_signed_adder_0 : entity simple.saturated_signed_adder
   generic map (
-    G_A_WIDTH => 6,
-    G_B_WIDTH => 9,
-    G_RESULT_WIDTH => 6,
-    G_MAX_VALUE => C_MAX_VALUE,
-    G_MIN_VALUE => C_MIN_VALUE
+    A_WIDTH => 6,
+    B_WIDTH => 9,
+    RESULT_WIDTH => 6,
+    MAX_VALUE => C_MAX_VALUE,
+    MIN_VALUE => C_MIN_VALUE
   )
   port map (
     clk_i  => s_clk,

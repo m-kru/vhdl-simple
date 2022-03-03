@@ -14,8 +14,8 @@ library ieee;
 -- This circuit guarantess zero metastability problems.
 entity Reset_Synchronizer is
   generic (
-    G_INPUT_POSITIVE  : boolean := true; -- TRUE for positive polarity
-    G_OUTPUT_POSITIVE : boolean := true
+    INPUT_POSITIVE  : boolean := true; -- TRUE for positive polarity
+    OUTPUT_POSITIVE : boolean := true
   );
   port (
     clk_i : in std_logic;
@@ -36,8 +36,8 @@ architecture rtl of Reset_Synchronizer is
 begin
 
   -- vsg_off concurrent_007
-  rst_in_p <= rst_i when G_INPUT_POSITIVE else not(rst_i);
-  rst_o <= rst_ff2 when G_OUTPUT_POSITIVE else not(rst_ff2);
+  rst_in_p <= rst_i when INPUT_POSITIVE else not(rst_i);
+  rst_o <= rst_ff2 when OUTPUT_POSITIVE else not(rst_ff2);
   -- vsg_on
 
   sync: process(clk_i, rst_in_p) is

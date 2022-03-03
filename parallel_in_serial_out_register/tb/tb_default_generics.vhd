@@ -25,8 +25,8 @@ begin
 
   DUT : entity simple.parallel_in_serial_out_register
   generic map (
-     G_INPUT_WIDTH  => 8,
-     G_OUTPUT_WIDTH => 1
+     INPUT_WIDTH  => 8,
+     OUTPUT_WIDTH => 1
   )
   port map (
     clk_i      => clk,

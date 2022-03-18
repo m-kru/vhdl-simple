@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:register_chain
+name: :vhdl_simple:static_register_chain
 
 filesets:
   src:
     files:
-      - src/register_chain.vhd
+      - src/static_register_chain.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 

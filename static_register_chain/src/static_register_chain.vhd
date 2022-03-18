@@ -5,15 +5,15 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- register_chain is a simple chain of registers.
+-- Static_Register_Chain is a simple static chain of registers.
 --
 -- It can be used for multiple purposes such as registering
--- combinatorial signals (STAGES = 1) or adjusting delays.
+-- combinatorial signals (LENGTH = 1) or adjusting delays.
 --
--- Setting STAGES to 0 is not possible.
-entity register_chain is
+-- Setting LENGTH to 0 is not possible, as it makes no sense.
+entity Static_Register_Chain is
    generic (
-      STAGES      : positive  := 1;
+      LENGTH      : positive  := 1;
       WIDTH       : positive;
       INIT_VALUE  : std_logic := '0';
       RESET_VALUE : std_logic := '0'
@@ -27,9 +27,9 @@ entity register_chain is
    );
 end entity;
 
-architecture rtl of register_chain is
+architecture rtl of Static_Register_Chain is
 
-   type t_chain is array (0 to STAGES - 1) of std_logic_vector(WIDTH - 1 downto 0);
+   type t_chain is array (0 to LENGTH - 1) of std_logic_vector(WIDTH - 1 downto 0);
 
    signal chain : t_chain := (others => (others => INIT_VALUE));
 
@@ -39,7 +39,7 @@ begin
    begin
       if rising_edge(clk_i) then
          if clk_en_i = '1' then
-            for i in 0 to STAGES - 1 loop
+            for i in 0 to LENGTH - 1 loop
                if i = 0 then
                   chain(0) <= d_i;
                else
@@ -48,7 +48,7 @@ begin
             end loop;
 
             if rst_i = '1' then
-               for i in 0 to STAGES - 1 loop
+               for i in 0 to LENGTH - 1 loop
                   chain(i) <= (others => RESET_VALUE);
                end loop;
             end if;
@@ -56,6 +56,6 @@ begin
       end if;
    end process;
 
-   q_o <= chain(STAGES - 1);
+   q_o <= chain(LENGTH - 1);
 
 end architecture;

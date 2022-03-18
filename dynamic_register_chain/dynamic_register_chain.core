@@ -1,0 +1,27 @@
+CAPI=2:
+
+name: :vhdl_simple:dynamic_register_chain
+
+filesets:
+  src:
+    files:
+      - src/dynamic_register_chain.vhd
+    file_type: vhdlSource-2008
+    logical_name: simple
+
+  tb:
+    files:
+      - tb/tb.vhd
+    file_type: vhdlSource-2008
+
+targets:
+  default:
+    filesets:
+      - src
+
+  tb:
+    default_tool: ghdl
+    toplevel: tb
+    filesets:
+      - src
+      - tb

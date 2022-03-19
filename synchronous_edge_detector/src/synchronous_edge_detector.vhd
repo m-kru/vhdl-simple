@@ -6,30 +6,30 @@ library ieee;
    use ieee.std_logic_1164.all;
 
 
-entity synchronous_transition_detector is
+entity Synchronous_Edge_Detector is
    generic (
       WIDTH : positive;
       INIT_PREVIOUS : std_logic := '0';
       REGISTER_OUTPUTS : boolean := true
    );
    port (
-      clk_i         : in  std_logic;
-      clk_en_i      : in  std_logic := '1';
-      d_i           : in  std_logic_vector(WIDTH - 1 downto 0);
-      transition_o  : out std_logic_vector(WIDTH - 1 downto 0);
-      zero_to_one_o : out std_logic_vector(WIDTH - 1 downto 0);
-      one_to_zero_o : out std_logic_vector(WIDTH - 1 downto 0)
+      clk_i     : in  std_logic;
+      clk_en_i  : in  std_logic := '1';
+      d_i       : in  std_logic_vector(WIDTH - 1 downto 0);
+      edge_o    : out std_logic_vector(WIDTH - 1 downto 0);
+      rising_o  : out std_logic_vector(WIDTH - 1 downto 0);
+      falling_o : out std_logic_vector(WIDTH - 1 downto 0)
    );
 end entity;
 
 
-architecture rtl of synchronous_transition_detector is
+architecture rtl of Synchronous_Edge_Detector is
 
    signal previous_data : std_logic_vector(WIDTH - 1 downto 0) := (others => INIT_PREVIOUS);
 
-   signal transition  : std_logic_vector(WIDTH - 1 downto 0);
-   signal zero_to_one : std_logic_vector(WIDTH - 1 downto 0);
-   signal one_to_zero : std_logic_vector(WIDTH - 1 downto 0);
+   signal edge    : std_logic_vector(WIDTH - 1 downto 0);
+   signal rising  : std_logic_vector(WIDTH - 1 downto 0);
+   signal falling : std_logic_vector(WIDTH - 1 downto 0);
 
 begin
 
@@ -45,19 +45,19 @@ begin
 
    detector : process (all) is
    begin
-      transition  <= (others => '0');
-      zero_to_one <= (others => '0');
-      one_to_zero <= (others => '0');
+      edge    <= (others => '0');
+      rising  <= (others => '0');
+      falling <= (others => '0');
 
       for i in d_i'range loop
          if previous_data(i) = '0' and d_i(i) = '1' then
-            zero_to_one(i) <= '1';
-            transition(i) <= '1';
+            rising(i) <= '1';
+            edge(i)   <= '1';
          end if;
 
          if previous_data(i) = '1' and d_i(i) = '0' then
-            one_to_zero(i) <= '1';
-            transition(i) <= '1';
+            falling(i) <= '1';
+            edge(i)    <= '1';
          end if;
       end loop;
    end process;
@@ -69,18 +69,18 @@ begin
       begin
          if rising_edge(clk_i) then
             if clk_en_i = '1' then
-               transition_o  <= transition;
-               zero_to_one_o <= zero_to_one;
-               one_to_zero_o <= one_to_zero;
+               edge_o    <= edge;
+               rising_o  <= rising;
+               falling_o <= falling;
             end if;
          end if;
       end process;
 
    else generate
 
-      transition_o  <= transition;
-      zero_to_one_o <= zero_to_one;
-      one_to_zero_o <= one_to_zero;
+      edge_o    <= edge;
+      rising_o  <= rising;
+      falling_o <= falling;
 
    end generate;
 

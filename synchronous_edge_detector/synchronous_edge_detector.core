@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:synchronous_transition_detector
+name: :vhdl_simple:synchronous_edge_detector
 
 filesets:
   src:
     files:
-      - src/synchronous_transition_detector.vhd
+      - src/synchronous_edge_detector.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 

@@ -19,7 +19,7 @@ library ieee;
 -- (START_ON_RESET = true) or after the rst_i is deasserted
 -- (START_ON_RESET = false). RESET_VALUE is used only if
 -- START_ON_RESET = false.
-entity static_pulse_width_modulator is
+entity Static_Pulse_Width_Modulator is
    generic (
       PERIOD             : positive;
       DUTY               : positive;

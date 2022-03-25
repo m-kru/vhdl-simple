@@ -1,5 +1,5 @@
 if {[string match "Vivado*" [version]]} {
-    set_property SCOPED_TO_REF false_path_synchronization_register [get_files false_path_synchronization_register.xdc]
+    set_property SCOPED_TO_REF False_Path_Synchronization_Register [get_files False_Path_Synchronization_Register.xdc]
 } else {
-    error "false_path_synchronization_register entity misses constraint file for your EDA tool"
+    error "False_Path_Synchronization_Register entity misses constraint file for your EDA tool"
 }

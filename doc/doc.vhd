@@ -1,0 +1,5 @@
+-- vhdl-simple
+-- Library for simple VHDL entities.
+--
+-- vhdl-simple is library for simple VHDL entities, that are often reused in different designs.
+-- Simple refers to the functionality of the entity, not necessarily to the implementation of the entity.

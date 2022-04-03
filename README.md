@@ -2,7 +2,7 @@
 Library for simple VHDL entities.
 
 ## Introduction
-vhdl\_simple is library for simple VHDL entities, that are often reused in different designs.
+vhdl-simple is library for simple VHDL entities, that are often reused in different designs.
 Simple refers to the functionality of the entity, not necessarily to the implementation of the entity.
 
 This library is from scratch intended to be used with [FuseSoc](https://github.com/olofk/fusesoc), but of course it can be used with any build tool/system.

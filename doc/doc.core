@@ -1,0 +1,16 @@
+CAPI=2:
+
+name: :vhdl_simple:doc
+description: vhdl-simple library documentation.
+
+filesets:
+  doc:
+    files:
+      - doc.vhd
+    file_type: vhdlSource-2008
+    logical_name: simple
+
+targets:
+  default:
+    filesets:
+      - doc

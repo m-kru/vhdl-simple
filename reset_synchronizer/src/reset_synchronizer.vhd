@@ -22,7 +22,6 @@ entity Reset_Synchronizer is
     rst_i : in std_logic;
     rst_o : out std_logic
   );
-
 end entity;
 
 architecture rtl of Reset_Synchronizer is

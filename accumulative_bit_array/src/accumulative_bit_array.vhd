@@ -13,7 +13,7 @@ entity Accumulative_Bit_Array is
   );
   port (
     clk_i   : in  std_logic;
-    rst_i   : in  std_logic;
+    rst_i   : in  std_logic := '0';
     wr_en_i : in  std_logic := '1';
     d_i     : in  std_logic_vector(WIDTH - 1 downto 0);
     q_o     : out std_logic_vector(WIDTH - 1 downto 0)

@@ -16,7 +16,7 @@ library types;
 -- OVERRANGE_POLICY defines what should be set to the output_o when number of inputs
 -- is not a power of 2. Available policies are 'first', 'last', 'value'.
 -- If 'value' is choosen, then output_o <= (others => OVERRANGE_VALUE).
--- The default policy is ...
+-- The default policy is 'value'.
 -- Setting OVERRANGE_POLICY to 'value' and OVERRANGE_VALUE to '0' or '1' results
 -- with a greater resource utilization.
 -- Setting OVERRANGE_POLICY to 'first' or 'last' _probably_ does not increase the

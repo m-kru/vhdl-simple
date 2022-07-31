@@ -5,7 +5,7 @@ name: :vhdl_simple:multiplexer
 filesets:
   src:
     depend:
-      - mkru:vhdl:types
+      - mkru:vhdl-types:types
     files:
       - src/multiplexer.vhd
     file_type: vhdlSource-2008

@@ -5,15 +5,15 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- Synchronous_Pulse_Catcher can be used to monitor signals and record
+-- Pulse_Catcher is a synchronous pulse catcher. It can be used to monitor signals and record
 -- that there have been any pulses.
 --
 -- Clearing has higher priority than catching the pulse.
--- This is because the main goal of the Synchronous_Pulse_Catcher is to monitor signals
+-- This is because the main goal of the Pulse_Catcher is to monitor signals
 -- and record that there has been a pulse, not to count the number of pulses.
 -- To not miss any pulse a proper clear_mask has to be provided (a mask that
 -- clears only these bits of q that are set to '1').
-entity Synchronous_Pulse_Catcher is
+entity Pulse_Catcher is
    generic (
       WIDTH      : positive;
       INIT_VALUE : std_logic := '0';
@@ -33,7 +33,7 @@ entity Synchronous_Pulse_Catcher is
 end entity;
 
 
-architecture rtl of Synchronous_Pulse_Catcher is
+architecture rtl of Pulse_Catcher is
 
    signal q : std_logic_vector(WIDTH - 1 downto 0) := (others => INIT_VALUE);
 

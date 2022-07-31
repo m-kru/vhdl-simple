@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:synchronous_pulse_catcher
+name: :vhdl_simple:pulse_catcher
 
 filesets:
   src:
     files:
-      - src/synchronous_pulse_catcher.vhd
+      - src/pulse_catcher.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -21,7 +21,7 @@ targets:
 
   tb:
     default_tool: ghdl
-    toplevel: tb
+    toplevel: tb_pulse_catcher
     filesets:
       - src
       - tb

@@ -8,8 +8,8 @@ library ieee;
    use ieee.math_real.ceil;
    use ieee.math_real.log2;
 
-library types;
-   use types.types.all;
+library ltypes;
+   use ltypes.types.all;
 
 -- Multiplexer is a generic multiplexer.
 --

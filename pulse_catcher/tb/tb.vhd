@@ -4,11 +4,11 @@ library ieee;
 library simple;
 
 
-entity tb is
+entity tb_pulse_catcher is
 end entity;
 
 
-architecture test of tb is
+architecture test of tb_pulse_catcher is
 
    constant C_CLK_PERIOD : time := 10 ns;
    signal clk : std_logic := '0';
@@ -32,7 +32,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity simple.Synchronous_Pulse_Catcher
+   DUT : entity simple.Pulse_Catcher
    generic map (
       WIDTH => C_WIDTH
    )

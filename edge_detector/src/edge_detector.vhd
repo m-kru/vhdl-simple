@@ -6,7 +6,8 @@ library ieee;
    use ieee.std_logic_1164.all;
 
 
-entity Synchronous_Edge_Detector is
+-- Edge_Detector is a synchronous edge detector.
+entity Edge_Detector is
    generic (
       WIDTH : positive;
       INIT_PREVIOUS : std_logic := '0';
@@ -16,20 +17,20 @@ entity Synchronous_Edge_Detector is
       clk_i     : in  std_logic;
       clk_en_i  : in  std_logic := '1';
       d_i       : in  std_logic_vector(WIDTH - 1 downto 0);
-      edge_o    : out std_logic_vector(WIDTH - 1 downto 0);
-      rising_o  : out std_logic_vector(WIDTH - 1 downto 0);
-      falling_o : out std_logic_vector(WIDTH - 1 downto 0)
+      e_o       : out std_logic_vector(WIDTH - 1 downto 0); -- Edge detected.
+      r_o       : out std_logic_vector(WIDTH - 1 downto 0); -- Rising edge detected.
+      f_o       : out std_logic_vector(WIDTH - 1 downto 0)  -- Falling edge detected.
    );
 end entity;
 
 
-architecture rtl of Synchronous_Edge_Detector is
+architecture rtl of Edge_Detector is
 
    signal previous_data : std_logic_vector(WIDTH - 1 downto 0) := (others => INIT_PREVIOUS);
 
-   signal edge    : std_logic_vector(WIDTH - 1 downto 0);
-   signal rising  : std_logic_vector(WIDTH - 1 downto 0);
-   signal falling : std_logic_vector(WIDTH - 1 downto 0);
+   signal e : std_logic_vector(WIDTH - 1 downto 0);
+   signal r : std_logic_vector(WIDTH - 1 downto 0);
+   signal f : std_logic_vector(WIDTH - 1 downto 0);
 
 begin
 
@@ -45,19 +46,19 @@ begin
 
    detector : process (all) is
    begin
-      edge    <= (others => '0');
-      rising  <= (others => '0');
-      falling <= (others => '0');
+      e <= (others => '0');
+      r <= (others => '0');
+      f <= (others => '0');
 
       for i in d_i'range loop
          if previous_data(i) = '0' and d_i(i) = '1' then
-            rising(i) <= '1';
-            edge(i)   <= '1';
+            r(i) <= '1';
+            e(i)   <= '1';
          end if;
 
          if previous_data(i) = '1' and d_i(i) = '0' then
-            falling(i) <= '1';
-            edge(i)    <= '1';
+            f(i) <= '1';
+            e(i)    <= '1';
          end if;
       end loop;
    end process;
@@ -69,18 +70,18 @@ begin
       begin
          if rising_edge(clk_i) then
             if clk_en_i = '1' then
-               edge_o    <= edge;
-               rising_o  <= rising;
-               falling_o <= falling;
+               e_o <= e;
+               r_o <= r;
+               f_o <= f;
             end if;
          end if;
       end process;
 
    else generate
 
-      edge_o    <= edge;
-      rising_o  <= rising;
-      falling_o <= falling;
+      e_o <= e;
+      r_o <= r;
+      f_o <= f;
 
    end generate;
 

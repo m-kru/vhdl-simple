@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:synchronous_edge_detector
+name: :vhdl_simple:edge_detector
 
 filesets:
   src:
     files:
-      - src/synchronous_edge_detector.vhd
+      - src/edge_detector.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -26,14 +26,14 @@ targets:
 
   tb:
     default_tool: ghdl
-    toplevel: tb
+    toplevel: tb_edge_detector
     filesets:
       - src
       - tb
 
   tb_comb:
     default_tool: ghdl
-    toplevel: tb_comb
+    toplevel: tb_edge_detector_comb
     filesets:
       - src
       - tb_comb

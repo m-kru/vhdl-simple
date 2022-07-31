@@ -3,10 +3,10 @@ library ieee;
 
 library simple;
 
-entity tb_comb is
+entity tb_edge_detector_comb is
 end entity;
 
-architecture test of tb_comb is
+architecture test of tb_edge_detector_comb is
    constant C_WIDTH : positive := 2;
 
    constant C_CLK_PERIOD : time := 10 ns;
@@ -23,17 +23,17 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity simple.synchronous_edge_detector
+   DUT : entity simple.Edge_Detector
    generic map (
       WIDTH => C_WIDTH,
       REGISTER_OUTPUTS => false
    )
    port map (
-      clk_i     => clk,
-      d_i       => data,
-      edge_o    => edge,
-      rising_o  => rising,
-      falling_o => falling
+      clk_i => clk,
+      d_i   => data,
+      e_o   => edge,
+      r_o   => rising,
+      f_o   => falling
    );
 
 

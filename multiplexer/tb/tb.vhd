@@ -3,10 +3,10 @@ library ieee;
 
 library simple;
 
-entity tb is
+entity tb_multiplexer is
 end entity;
 
-architecture test of tb is
+architecture test of tb_multiplexer is
 
    constant C_WIDTH : positive := 2;
 

@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:synchronous_binary_counter
+name: :vhdl_simple:binary_counter
 
 filesets:
   src:
     files:
-      - src/synchronous_binary_counter.vhd
+      - src/binary_counter.vhd
     file_type: vhdlSource
     logical_name: simple
 
@@ -36,26 +36,29 @@ targets:
 
   _tb_base: &tb_base
     default_tool: ghdl
-    toplevel: tb
     filesets:
       - src
 
   tb_default_behavior:
     <<: *tb_base
+    toplevel: tb_binary_counter_default_behavior
     filesets_append:
       - tb_default_behavior
 
   tb_triangle_waveform:
     <<: *tb_base
+    toplevel: tb_binary_counter_triangle_waveform
     filesets_append:
       - tb_triangle_waveform
 
   tb_down_counting:
     <<: *tb_base
+    toplevel: tb_binary_counter_down_counting
     filesets_append:
       - tb_down_counting
 
   tb_reset:
     <<: *tb_base
+    toplevel: tb_binary_counter_reset
     filesets_append:
       - tb_reset

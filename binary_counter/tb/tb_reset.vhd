@@ -7,11 +7,11 @@ library ieee;
 library simple;
 
 
-entity tb is
+entity tb_binary_counter_reset is
 end entity;
 
 
-architecture test of tb is
+architecture test of tb_binary_counter_reset is
 
    constant C_MAX_VALUE : positive := 11;
    constant C_WIDTH : positive := integer(ceil(log2(real(C_MAX_VALUE))));
@@ -28,7 +28,7 @@ begin
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity simple.Synchronous_Binary_Counter
+   DUT : entity simple.Binary_Counter
    generic map (
       COUNTER_MAX_VALUE => C_MAX_VALUE
    )

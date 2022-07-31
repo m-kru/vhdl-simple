@@ -23,7 +23,7 @@ targets:
 
   tb:
     default_tool: ghdl
-    toplevel: tb
+    toplevel: tb_multiplexer
     filesets:
       - src
       - tb

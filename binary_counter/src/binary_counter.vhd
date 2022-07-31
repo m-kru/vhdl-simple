@@ -8,7 +8,7 @@ library ieee;
    use ieee.math_real.ceil;
    use ieee.math_real.log2;
 
--- Synchronous_Binary_Counter with configurable width.
+-- Binary_Counter is a synchronous binary counter with configurable width.
 --
 -- If en_i = '0' the counter keeps counting, however min_o and max_o are stuck to '0'. 
 --
@@ -20,7 +20,7 @@ library ieee;
 -- Sacrificing one or two flip flops is a price worth to pay.
 --
 -- down_i - '0' for counting up (default), '1' for counting down.
-entity Synchronous_Binary_Counter is
+entity Binary_Counter is
    generic (
       COUNTER_MAX_VALUE   : positive;
       COUNTER_MIN_VALUE   : natural := 0;
@@ -49,7 +49,7 @@ entity Synchronous_Binary_Counter is
 end entity;
 
 
-architecture rtl of Synchronous_Binary_Counter is
+architecture rtl of Binary_Counter is
 
    constant WIDTH : positive := integer(ceil(log2(real(COUNTER_MAX_VALUE))));
 

@@ -1,11 +1,11 @@
 CAPI=2:
 
-name: :vhdl_simple:synchronous_pulse_extender
+name: :vhdl_simple:pulse_extender
 
 filesets:
   src:
     files:
-      - src/synchronous_pulse_extender.vhd
+      - src/pulse_extender.vhd
     file_type: vhdlSource-2008
     logical_name: simple
 
@@ -21,7 +21,7 @@ targets:
 
   tb:
     default_tool: ghdl
-    toplevel: tb
+    toplevel: tb_pulse_extender
     filesets:
       - src
       - tb

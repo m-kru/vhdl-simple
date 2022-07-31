@@ -5,7 +5,7 @@
 library ieee;
    use ieee.std_logic_1164.all;
 
--- Synchronous_Pulse_Extender extends a pulse by EXTEND_VALUE clock ticks.
+-- Pulse_Extender extends a pulse by EXTEND_VALUE clock ticks.
 --
 -- If there are 2 consecutive pulses, and the gap between them is less than
 -- or equal to EXTEND_VALUE, then the gap will not be seen on the output.
@@ -17,7 +17,7 @@ library ieee;
 -- d   : _____|       |_______|
 --             _______________________________________
 -- q   : _____|
-entity Synchronous_Pulse_Extender is
+entity Pulse_Extender is
    generic (
       WIDTH            : positive;
       EXTEND_VALUE     : positive;
@@ -34,7 +34,7 @@ entity Synchronous_Pulse_Extender is
 end entity;
 
 
-architecture rtl of Synchronous_Pulse_Extender is
+architecture rtl of Pulse_Extender is
 
    subtype t_counter is natural range 0 to EXTEND_VALUE - 1;
    type t_counter_vector is array (natural range <>) of t_counter;

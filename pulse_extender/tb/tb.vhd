@@ -4,11 +4,11 @@ library ieee;
 library simple;
 
 
-entity tb is
+entity tb_pulse_extender is
 end entity;
 
 
-architecture test of tb is
+architecture test of tb_pulse_extender is
 
    constant C_CLK_PERIOD : time := 10 ns;
    signal clk : std_logic := '0';
@@ -19,12 +19,13 @@ architecture test of tb is
    signal en : std_logic := '1';
    signal d : std_logic := '0';
    signal q : std_logic;
+
 begin
 
    clk <= not clk after C_CLK_PERIOD / 2;
 
 
-   DUT : entity simple.Synchronous_Pulse_Extender
+   DUT : entity simple.Pulse_Extender
    generic map (
       WIDTH        => C_WIDTH,
       EXTEND_VALUE => C_EXTEND_VALUE

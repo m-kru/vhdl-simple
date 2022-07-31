@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 library simple;
 
-entity tb_default_generics is
-end entity tb_default_generics;
+entity tb_saturated_signed_adder_default_generics is
+end entity;
 
-architecture tb of tb_default_generics is
+architecture tb of tb_saturated_signed_adder_default_generics is
 
   constant C_CLK_PERIOD : time := 10 ns;
   signal s_clk : std_logic := '0';

@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 library simple;
 
-entity tb_comb is
-end entity tb_comb;
+entity tb_saturated_signed_adder_comb is
+end entity;
 
-architecture tb of tb_comb is
+architecture tb of tb_saturated_signed_adder_comb is
 
    constant C_WIDTH : positive := 8;
 

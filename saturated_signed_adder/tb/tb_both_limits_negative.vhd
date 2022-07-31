@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 library simple;
 
-entity tb_both_limits_negative is
-end entity tb_both_limits_negative;
+entity tb_saturated_signed_adder_both_limits_negative is
+end entity;
 
-architecture tb of tb_both_limits_negative is
+architecture tb of tb_saturated_signed_adder_both_limits_negative is
 
   constant C_CLK_PERIOD : time := 10 ns;
   signal s_clk : std_logic := '0';

@@ -31,21 +31,21 @@ targets:
 
   tb_default_generics:
     default_tool: ghdl
-    toplevel: tb_default_generics
+    toplevel: tb_saturated_unsigned_adder_default_generics
     filesets:
       - src
       - tb_default_generics
 
   tb_comb:
     default_tool: ghdl
-    toplevel: tb_comb
+    toplevel: tb_saturated_unsigned_adder_comb
     filesets:
       - src
       - tb_comb
 
   tb_different_widths:
     default_tool: ghdl
-    toplevel: tb_different_widths
+    toplevel: tb_saturated_unsigned_adder_different_widths
     filesets:
       - src
       - tb_different_widths

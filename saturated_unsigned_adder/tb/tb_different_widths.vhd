@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 library simple;
 
-entity tb_different_widths is
-end entity tb_different_widths;
+entity tb_saturated_unsigned_adder_different_widths is
+end entity;
 
-architecture tb of tb_different_widths is
+architecture tb of tb_saturated_unsigned_adder_different_widths is
 
   constant C_CLK_PERIOD : time := 10 ns;
   signal s_clk : std_logic := '0';

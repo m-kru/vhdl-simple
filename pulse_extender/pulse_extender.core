@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: :vhdl_simple:pulse_extender
+name: mkru:vhdl-simple:pulse_extender
 
 filesets:
   src:

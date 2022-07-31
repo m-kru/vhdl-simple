@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: :vhdl_simple:dynamic_pulse_generator
+name: mkru:vhdl-simple:dynamic_pulse_generator
 
 filesets:
   src:

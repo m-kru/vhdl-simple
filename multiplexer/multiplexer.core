@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: :vhdl_simple:multiplexer
+name: mkru:vhdl-simple:multiplexer
 
 filesets:
   src:

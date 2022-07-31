@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: :vhdl_simple:binary_counter
+name: mkru:vhdl-simple:binary_counter
 
 filesets:
   src:

@@ -33,9 +33,9 @@ begin
 
    DUT : entity simple.Binary_Counter
    generic map (
-      COUNTER_MAX_VALUE  => C_MAX_VALUE,
-      COUNTER_MIN_VALUE  => C_MIN_VALUE,
-      COUNTER_INIT_VALUE => C_MIN_VALUE
+      MAX_VALUE  => C_MAX_VALUE,
+      MIN_VALUE  => C_MIN_VALUE,
+      INIT_VALUE => C_MIN_VALUE
    )
    port map (
       clk_i  => clk,

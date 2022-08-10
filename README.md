@@ -1,5 +1,5 @@
 # vhdl-simple
-Library for simple VHDL entities.
+VHDL library for simple entities.
 
 ## Introduction
 vhdl-simple is library for simple VHDL entities, that are often reused in different designs.

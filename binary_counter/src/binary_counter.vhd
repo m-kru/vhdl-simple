@@ -79,9 +79,9 @@ begin
 
             if stb_i = '1' then
                count <= d_i;
-               if count = MIN_VALUE and down_i = '1' then
+               if d_i = MIN_VALUE and down_i = '1' then
                   if en_i = '1' then min_o <= '1'; end if;
-               elsif count = MAX_VALUE and down_i = '0' then
+               elsif d_i = MAX_VALUE and down_i = '0' then
                   if en_i = '1' then max_o <= '1'; end if;
                end if;
             elsif (count < MAX_VALUE) and down_i = '0' then

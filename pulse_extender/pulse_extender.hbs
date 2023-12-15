@@ -1,0 +1,19 @@
+namespace eval vhdl-simple::pulse-extender {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/pulse_extender.vhd
+	}
+
+	proc tb {} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop "tb_pulse_extender"
+
+		src
+		hbs::SetLib ""
+		hbs::AddFile tb/tb.vhd
+
+		hbs::Run
+	}
+
+	hbs::Register
+}

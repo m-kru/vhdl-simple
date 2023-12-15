@@ -1,0 +1,15 @@
+namespace eval vhdl-simple::reset-synchronizer {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/reset_synchronizer.vhd
+
+		if {$hbs::Tool == "vivado"} {
+			hbs:AddFile constr/reset_synchronizer.xdc
+			set_property SCOPED_TO_REF Reset_Synchronizer [get_files reset_synchronizer.xdc]
+		} else {
+		    error "vhdl-simple: reset-synchronizer core misses constraint file for your tool"
+		}
+	}
+
+	hbs::Register
+}

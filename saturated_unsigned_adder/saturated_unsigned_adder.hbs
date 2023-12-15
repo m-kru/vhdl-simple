@@ -1,0 +1,33 @@
+namespace eval vhdl-simple::saturated-unsigned-adder {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/saturated_unsigned_adder.vhd
+	}
+
+	proc _tb {top} {
+		hbs::SetTop $top
+		hbs::SetTool "ghdl"
+		src
+		hbs::SetLib ""
+	}
+
+	proc tb-default-generics {} {
+		_tb "tb_saturated_unsigned_adder_default_generics"
+		hbs::AddFile tb/tb_default_generics.vhd
+		hbs::Run
+	}
+
+	proc tb-default-comb {} {
+		_tb "tb_saturated_unsigned_adder_comb"
+		hbs::AddFile tb/tb_comb.vhd
+		hbs::Run
+	}
+
+	proc tb-default-different-widths {} {
+		_tb "tb_saturated_unsigned_adder_different_widths"
+		hbs::AddFile tb/tb_different_widths.vhd
+		hbs::Run
+	}
+
+	hbs::Register
+}

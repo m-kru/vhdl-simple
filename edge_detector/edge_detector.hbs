@@ -1,0 +1,27 @@
+namespace eval vhdl-simple::edge-detector {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/edge_detector.vhd
+	}
+
+	proc _tb {top} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop $top
+		src
+		hbs::SetLib ""
+	}
+
+	proc tb {} {
+		_tb "tb_edge_detector"
+		hbs::AddFile tb/tb.vhd
+		hbs::Run
+	}
+
+	proc tb-comb {} {
+		_tb "tb_edge_detector_comb"
+		hbs::AddFile tb/tb_comb.vhd
+		hbs::Run
+	}
+
+	hbs::Register
+}

@@ -1,0 +1,27 @@
+namespace eval vhdl-simple::static-pulse-width-modulator {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/static_pulse_width_modulator.vhd
+	}
+
+	proc _tb {top} {
+		hbs::SetTop $top
+		hbs::SetTool "ghdl"
+		src
+		hbs::SetLib ""
+	}
+
+	proc tb {} {
+		_tb "tb"
+		hbs::AddFile tb/tb.vhd
+		hbs::Run
+	}
+
+	proc tb-start-after0reset {} {
+		_tb "tb_start_after_reset"
+		hbs::AddFile tb/tb_start_after_reset.vhd
+		hbs::Run
+	}
+
+	hbs::Register
+}

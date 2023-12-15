@@ -1,0 +1,7 @@
+namespace eval vhdl-simple::accumulative-bit-array {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/accumulative_bit_array.vhd
+	}
+	hbs::Register
+}

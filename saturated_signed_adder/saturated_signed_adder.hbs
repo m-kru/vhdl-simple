@@ -1,0 +1,39 @@
+namespace eval vhdl-simple::saturated-signed-adder {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/saturated_signed_adder.vhd
+	}
+
+	proc _tb {top} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop $top
+		src
+		hbs::SetLib ""
+	}
+
+	proc tb-default-generics {} {
+		_tb "tb_saturated_signed_adder_default_generics"
+		hbs::AddFile tb/tb_default_generics.vhd
+		hbs::Run
+	}
+
+	proc tb-comb {} {
+		_tb "tb_saturated_signed_adder_comb"
+		hbs::AddFile tb/tb_comb.vhd
+		hbs::Run
+	}
+
+	proc tb-both-limits-positive {} {
+		_tb "tb_saturated_signed_adder_both_limits_positive"
+		hbs::AddFile tb/tb_both_limits_positive.vhd
+		hbs::Run
+	}
+
+	proc tb-both-limits-negative {} {
+		_tb "tb_saturated_signed_adder_both_limits_negative"
+		hbs::AddFile tb/tb_both_limits_negative.vhd
+		hbs::Run
+	}
+
+	hbs::Register
+}

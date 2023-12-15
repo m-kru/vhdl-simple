@@ -1,0 +1,39 @@
+namespace eval vhdl-simple::binary-counter {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/binary_counter.vhd
+	}
+
+	proc _tb {top} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop $top
+		src
+		hbs::SetLib ""
+	}
+
+	proc tb-default-behavior {} {
+		_tb "tb_binary_counter_default_behavior"
+		hbs::AddFile tb/tb_default_behavior.vhd
+		hbs::Run
+	}
+
+	proc tb-triangle-waveform {} {
+		_tb "tb_binary_counter_triangle_waveform"
+		hbs::AddFile tb/tb_triangle_waveform.vhd
+		hbs::Run
+	}
+
+	proc tb-down-counting {} {
+		_tb "tb_binary_counter_down_counting"
+		hbs::AddFile tb/tb_down_counting.vhd
+		hbs::Run
+	}
+
+	proc tb-reset {} {
+		_tb "tb_binary_counter_reset"
+		hbs::AddFile tb/tb_reset.vhd
+		hbs::Run
+	}
+
+	hbs::Register
+}

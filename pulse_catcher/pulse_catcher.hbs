@@ -1,0 +1,19 @@
+namespace eval vhdl-simple::pulse-catcher {
+	proc src {} {
+		hbs::SetLib "simple"
+		hbs::AddFile src/pulse_catcher.vhd
+	}
+
+	proc tb {} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop "tb_pulse_catcher"
+
+		src
+		hbs::SetLib ""
+		hbs::AddFile tb/tb.vhd
+
+		hbs::Run
+	}
+
+	hbs::Register
+}

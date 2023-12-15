@@ -1,0 +1,20 @@
+namespace eval vhdl-simple::multiplexer {
+	proc src {} {
+		hbs::AddDep vhdl-types::src
+		hbs::SetLib "simple"
+		hbs::AddFile src/multiplexer.vhd
+	}
+
+	proc tb {} {
+		hbs::SetTool "ghdl"
+		hbs::SetTop "tb_multiplexer"
+
+		src
+		hbs::SetLib ""
+		hbs::AddFile tb/tb.vhd
+
+		hbs::Run
+	}
+
+	hbs::Register
+}

@@ -17,7 +17,7 @@ namespace eval vhdl-simple::static-pulse-width-modulator {
 		hbs::Run
 	}
 
-	proc tb-start-after0reset {} {
+	proc tb-start-after-reset {} {
 		_tb "tb_start_after_reset"
 		hbs::AddFile tb/tb_start_after_reset.vhd
 		hbs::Run

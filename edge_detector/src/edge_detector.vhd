@@ -53,12 +53,12 @@ begin
       for i in d_i'range loop
          if previous_data(i) = '0' and d_i(i) = '1' then
             r(i) <= '1';
-            e(i)   <= '1';
+            e(i) <= '1';
          end if;
 
          if previous_data(i) = '1' and d_i(i) = '0' then
             f(i) <= '1';
-            e(i)    <= '1';
+            e(i) <= '1';
          end if;
       end loop;
    end process;
